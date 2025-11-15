@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Interview Notes - Java, DBMS & Spring Boot</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta
+      name="description"
+      content="Comprehensive interview preparation notes for Java, DBMS, and Spring Boot"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
+    />
+    <meta
+      name="keywords"
+      content="Java, DBMS, Spring Boot, Interview Questions, Programming, Database, SQL"
+    />
+    <meta name="author" content="Interview Notes" />
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#7c3aed" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Interview Notes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>"
+    />
+
+    <!-- Apple Touch Icons -->
+    <link
+      rel="apple-touch-icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='15%25' fill='%237c3aed'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='130' fill='white'>📚</text></svg>"
+    />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="./manifest.json" />
+
+    <!-- Theme: Vue (options: vue, buble, dark, pure) -->
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css"
+    />
+
+    <style>
+      :root {
+        --base-font-size: 16px;
+        --theme-color: #7c3aed;
+        --theme-color-dark: #6d28d9;
+      }
+
+      /* Custom styling for better readability */
+      .markdown-section code {
+        border-radius: 4px;
+        padding: 2px 6px;
+        background-color: #f8f8f8;
+      }
+
+      .markdown-section pre > code {
+        padding: 1.2em;
+        line-height: 1.5;
+      }
+
+      /* Sidebar styling */
+      .sidebar {
+        background-color: #fafafa;
+      }
+
+      .sidebar-nav > ul > li > a {
+        font-weight: 600;
+        margin-top: 8px;
+      }
+
+      /* Search box styling */
+      .search input {
+        border-radius: 20px;
+      }
+
+      /* Dark Theme Toggle Button */
+      .theme-toggle {
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: var(--theme-color);
+        color: white;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        z-index: 999;
+        font-size: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+      }
+
+      .theme-toggle:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Scroll to Top Button */
+      .scroll-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: var(--theme-color);
+        color: white;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        z-index: 999;
+        font-size: 24px;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+      }
+
+      .scroll-to-top:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      .scroll-to-top.show {
+        display: flex;
+      }
+
+      /* Dark Theme Styles */
+      body.dark-theme {
+        background-color: #1e1e1e;
+        color: #d4d4d4;
+      }
+
+      body.dark-theme .sidebar {
+        background-color: #252526;
+        border-right: 1px solid #3e3e42;
+      }
+
+      body.dark-theme .sidebar-nav li a {
+        color: #d4d4d4;
+      }
+
+      body.dark-theme .sidebar-nav li a:hover {
+        color: var(--theme-color);
+      }
+
+      body.dark-theme .app-name-link {
+        color: #ffffff;
+      }
+
+      body.dark-theme .markdown-section {
+        color: #d4d4d4;
+      }
+
+      body.dark-theme .markdown-section h1,
+      body.dark-theme .markdown-section h2,
+      body.dark-theme .markdown-section h3,
+      body.dark-theme .markdown-section h4,
+      body.dark-theme .markdown-section h5,
+      body.dark-theme .markdown-section h6 {
+        color: #ffffff;
+      }
+
+      body.dark-theme .markdown-section code {
+        background-color: #2d2d2d;
+        color: #ce9178;
+      }
+
+      body.dark-theme .markdown-section pre {
+        background-color: #1e1e1e;
+      }
+
+      body.dark-theme .markdown-section pre > code {
+        background-color: #1e1e1e;
+        color: #d4d4d4;
+      }
+
+      body.dark-theme .search input {
+        background-color: #3c3c3c;
+        color: #d4d4d4;
+        border: 1px solid #555;
+      }
+
+      body.dark-theme .search input::placeholder {
+        color: #999;
+      }
+
+      body.dark-theme .search .results-panel {
+        background-color: #252526;
+        border: 1px solid #3e3e42;
+      }
+
+      body.dark-theme .search .matching-post {
+        border-bottom: 1px solid #3e3e42;
+      }
+
+      body.dark-theme .search .matching-post:hover {
+        background-color: #2d2d2d;
+      }
+
+      body.dark-theme .docsify-pagination-container {
+        color: #d4d4d4;
+      }
+
+      body.dark-theme .pagination-item-label svg {
+        fill: #d4d4d4;
+      }
+
+      body.dark-theme table {
+        border-color: #3e3e42;
+      }
+
+      body.dark-theme table thead {
+        background-color: #2d2d2d;
+      }
+
+      body.dark-theme table tr {
+        border-bottom: 1px solid #3e3e42;
+      }
+
+      body.dark-theme table tbody tr:hover {
+        background-color: #2d2d2d;
+      }
+
+      body.dark-theme blockquote {
+        border-left-color: var(--theme-color);
+        background-color: #2d2d2d;
+        color: #d4d4d4;
+      }
+
+      body.dark-theme hr {
+        border-color: #3e3e42;
+      }
+
+      /* Reading Progress Bar */
+      .progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          var(--theme-color),
+          var(--theme-color-dark)
+        );
+        z-index: 9999;
+        transition: width 0.2s ease;
+      }
+
+      /* Better Loading Animation */
+      #app {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #app:empty::before {
+        content: "";
+        width: 50px;
+        height: 50px;
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid var(--theme-color);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Enhanced Code Blocks */
+      .markdown-section pre {
+        position: relative;
+        border-radius: 8px;
+        margin: 1.2em 0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .markdown-section pre > code {
+        border-radius: 8px;
+        font-size: 0.9em;
+      }
+
+      /* Active sidebar link highlighting */
+      .sidebar-nav li.active > a {
+        color: var(--theme-color);
+        font-weight: bold;
+        border-right: 3px solid var(--theme-color);
+      }
+
+      /* Better table styling */
+      .markdown-section table {
+        display: table;
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5em 0;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .markdown-section table thead {
+        background: linear-gradient(
+          135deg,
+          var(--theme-color),
+          var(--theme-color-dark)
+        );
+        color: white;
+      }
+
+      .markdown-section table th {
+        font-weight: 600;
+        padding: 12px 15px;
+      }
+
+      .markdown-section table td {
+        padding: 12px 15px;
+      }
+
+      /* Keyboard shortcut indicator */
+      .keyboard-shortcuts {
+        position: fixed;
+        bottom: 150px;
+        right: 20px;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 10px 15px;
+        border-radius: 8px;
+        font-size: 12px;
+        display: none;
+        z-index: 998;
+        max-width: 200px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      }
+
+      .keyboard-shortcuts.show {
+        display: block;
+        animation: fadeIn 0.3s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .keyboard-shortcuts kbd {
+        background: #555;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-family: monospace;
+        font-size: 11px;
+      }
+
+      /* Mobile Responsive Adjustments */
+      @media screen and (max-width: 768px) {
+        .theme-toggle,
+        .scroll-to-top {
+          width: 45px;
+          height: 45px;
+          font-size: 18px;
+          right: 15px;
+        }
+
+        .theme-toggle {
+          bottom: 75px;
+        }
+
+        .scroll-to-top {
+          bottom: 15px;
+        }
+
+        .keyboard-shortcuts {
+          display: none !important;
+        }
+
+        .markdown-section {
+          font-size: 15px;
+        }
+
+        .markdown-section pre > code {
+          font-size: 0.85em;
+        }
+      }
+
+      /* Print Styles */
+      @media print {
+        .sidebar,
+        .theme-toggle,
+        .scroll-to-top,
+        .progress-bar,
+        .keyboard-shortcuts,
+        .docsify-pagination-container {
+          display: none !important;
+        }
+
+        .content {
+          left: 0 !important;
+          max-width: 100% !important;
+        }
+
+        .markdown-section {
+          max-width: 100% !important;
+          padding: 0 !important;
+        }
+
+        .markdown-section pre > code {
+          white-space: pre-wrap !important;
+          word-wrap: break-word !important;
+        }
+
+        body.dark-theme {
+          background-color: white !important;
+          color: black !important;
+        }
+
+        body.dark-theme .markdown-section {
+          color: black !important;
+        }
+
+        body.dark-theme .markdown-section h1,
+        body.dark-theme .markdown-section h2,
+        body.dark-theme .markdown-section h3 {
+          color: black !important;
+        }
+
+        a {
+          color: #0366d6 !important;
+        }
+      }
+
+      /* Smooth scrolling for all browsers */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Better link styling */
+      .markdown-section a {
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: border-bottom 0.2s ease;
+      }
+
+      .markdown-section a:hover {
+        border-bottom: 1px solid var(--theme-color);
+      }
+
+      /* External link indicator */
+      .markdown-section
+        a[href^="http"]:not([href*="github.io"]):not(
+          [href*="localhost"]
+        ):after {
+        content: " ↗";
+        font-size: 0.8em;
+        opacity: 0.6;
+      }
+
+      /* Better blockquote styling */
+      .markdown-section blockquote {
+        border-left: 4px solid var(--theme-color);
+        padding: 15px 20px;
+        margin: 1.5em 0;
+        background: #f8f9fa;
+        border-radius: 4px;
+      }
+
+      body.dark-theme .markdown-section blockquote {
+        background-color: #2d2d2d;
+      }
+
+      /* Selection color */
+      ::selection {
+        background-color: var(--theme-color);
+        color: white;
+      }
+
+      ::-moz-selection {
+        background-color: var(--theme-color);
+        color: white;
+      }
+
+      /* Tooltip for buttons */
+      .theme-toggle:hover::before,
+      .scroll-to-top:hover::before {
+        content: attr(title);
+        position: absolute;
+        bottom: 60px;
+        right: 0;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 12px;
+        white-space: nowrap;
+        pointer-events: none;
+        animation: fadeIn 0.3s ease;
+      }
+
+      /* PWA Install Banner */
+      .pwa-install-banner {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(
+          135deg,
+          var(--theme-color),
+          var(--theme-color-dark)
+        );
+        color: white;
+        padding: 15px 20px;
+        display: none;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        animation: slideUp 0.3s ease;
+      }
+
+      @keyframes slideUp {
+        from {
+          transform: translateY(100%);
+        }
+        to {
+          transform: translateY(0);
+        }
+      }
+
+      .pwa-install-banner.show {
+        display: flex;
+      }
+
+      .pwa-install-content {
+        flex: 1;
+        margin-right: 15px;
+      }
+
+      .pwa-install-content h4 {
+        margin: 0 0 5px 0;
+        font-size: 16px;
+      }
+
+      .pwa-install-content p {
+        margin: 0;
+        font-size: 13px;
+        opacity: 0.9;
+      }
+
+      .pwa-install-buttons {
+        display: flex;
+        gap: 10px;
+      }
+
+      .pwa-install-buttons button {
+        padding: 8px 20px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .pwa-install-buttons .install-btn {
+        background: white;
+        color: var(--theme-color);
+      }
+
+      .pwa-install-buttons .install-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      .pwa-install-buttons .dismiss-btn {
+        background: transparent;
+        color: white;
+        border: 1px solid white;
+      }
+
+      .pwa-install-buttons .dismiss-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      /* PWA Update Toast */
+      .pwa-update-toast {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #333;
+        color: white;
+        padding: 15px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        display: none;
+        align-items: center;
+        gap: 15px;
+        z-index: 1001;
+        max-width: 350px;
+        animation: slideInRight 0.3s ease;
+      }
+
+      @keyframes slideInRight {
+        from {
+          transform: translateX(400px);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      .pwa-update-toast.show {
+        display: flex;
+      }
+
+      .pwa-update-toast button {
+        background: var(--theme-color);
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+
+      .pwa-update-toast button:hover {
+        background: var(--theme-color-dark);
+      }
+
+      /* Offline Indicator */
+      .offline-indicator {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: #ff9800;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 600;
+        z-index: 9998;
+        display: none;
+      }
+
+      .offline-indicator.show {
+        display: block;
+      }
+
+      body.dark-theme .pwa-update-toast {
+        background: #2d2d2d;
+        border: 1px solid #3e3e42;
+      }
+
+      /* Mobile adjustments for PWA banner */
+      @media screen and (max-width: 768px) {
+        .pwa-install-banner {
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .pwa-install-content {
+          margin-right: 0;
+        }
+
+        .pwa-install-buttons {
+          width: 100%;
+          justify-content: stretch;
+        }
+
+        .pwa-install-buttons button {
+          flex: 1;
+        }
+
+        .pwa-update-toast {
+          top: 10px;
+          right: 10px;
+          left: 10px;
+          max-width: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Offline Indicator -->
+    <div class="offline-indicator" id="offlineIndicator">
+      📡 You're offline - Content loaded from cache
+    </div>
+
+    <!-- Reading Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <div id="app">Loading...</div>
+
+    <!-- PWA Install Banner -->
+    <div class="pwa-install-banner" id="pwaInstallBanner">
+      <div class="pwa-install-content">
+        <h4>📱 Install Interview Notes</h4>
+        <p>Get offline access and app-like experience on your device!</p>
+      </div>
+      <div class="pwa-install-buttons">
+        <button class="install-btn" onclick="installPWA()">Install</button>
+        <button class="dismiss-btn" onclick="dismissInstallBanner()">
+          Maybe Later
+        </button>
+      </div>
+    </div>
+
+    <!-- PWA Update Toast -->
+    <div class="pwa-update-toast" id="pwaUpdateToast">
+      <span>🔄 New version available!</span>
+      <button onclick="updatePWA()">Update</button>
+    </div>
+
+    <!-- Theme Toggle Button -->
+    <button
+      class="theme-toggle"
+      onclick="toggleTheme()"
+      title="Toggle Dark/Light Theme (Press T)"
+      aria-label="Toggle theme"
+    >
+      <span id="theme-icon">🌙</span>
+    </button>
+
+    <!-- Scroll to Top Button -->
+    <button
+      class="scroll-to-top"
+      onclick="scrollToTop()"
+      title="Back to Top (Press ↑)"
+      aria-label="Scroll to top"
+    >
+      ↑
+    </button>
+
+    <!-- Keyboard Shortcuts Help -->
+    <div class="keyboard-shortcuts" id="keyboardHelp">
+      <strong>⌨️ Shortcuts:</strong><br />
+      <kbd>T</kbd> Toggle theme<br />
+      <kbd>Ctrl+K</kbd> Search<br />
+      <kbd>?</kbd> Show shortcuts<br />
+      <kbd>Home</kbd> Scroll to top
+    </div>
+
+    <script>
+      window.$docsify = {
+        name: "📚 Interview Notes",
+        repo: "", // Add your GitHub repo URL here if you want a GitHub corner
+        loadSidebar: true,
+        subMaxLevel: 3,
+        auto2top: true,
+        homepage: "README.md",
+
+        // Use root sidebar for all pages to avoid 404 warnings
+        alias: {
+          "/.*/_sidebar.md": "/_sidebar.md",
+        },
+
+        // Search plugin configuration
+        search: {
+          maxAge: 86400000, // Expiration time, default one day
+          paths: "auto",
+          placeholder: "🔍 Search topics...",
+          noData: "No results found!",
+          depth: 6,
+          hideOtherSidebarContent: false,
+        },
+
+        // Pagination
+        pagination: {
+          previousText: "← Previous",
+          nextText: "Next →",
+          crossChapter: true,
+          crossChapterText: true,
+        },
+
+        // Copy code plugin
+        copyCode: {
+          buttonText: "Copy",
+          errorText: "Error",
+          successText: "✓ Copied!",
+        },
+
+        // Syntax highlighting theme
+        themeColor: "#7c3aed",
+
+        // Footer
+        plugins: [
+          function (hook, vm) {
+            hook.beforeEach(function (html) {
+              return html;
+            });
+            hook.afterEach(function (html, next) {
+              next(html);
+            });
+          },
+        ],
+      };
+    </script>
+
+    <!-- Docsify core -->
+    <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+
+    <!-- Search plugin -->
+    <script src="//cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.min.js"></script>
+
+    <!-- Copy code plugin -->
+    <script src="//cdn.jsdelivr.net/npm/docsify-copy-code@2"></script>
+
+    <!-- Pagination plugin -->
+    <script src="//cdn.jsdelivr.net/npm/docsify-pagination@2/dist/docsify-pagination.min.js"></script>
+
+    <!-- Syntax highlighting for multiple languages -->
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-java.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-sql.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-javascript.min.js"></script>
+
+    <!-- Zoom image plugin -->
+    <script src="//cdn.jsdelivr.net/npm/docsify@4/lib/plugins/zoom-image.min.js"></script>
+
+    <!-- Custom JavaScript for Theme Toggle and Scroll to Top -->
+    <script>
+      // Theme Toggle Functionality
+      function toggleTheme() {
+        const body = document.body;
+        const themeIcon = document.getElementById("theme-icon");
+
+        body.classList.toggle("dark-theme");
+
+        // Update icon
+        if (body.classList.contains("dark-theme")) {
+          themeIcon.textContent = "☀️";
+          localStorage.setItem("theme", "dark");
+        } else {
+          themeIcon.textContent = "🌙";
+          localStorage.setItem("theme", "light");
+        }
+      }
+
+      // Load saved theme preference
+      window.addEventListener("DOMContentLoaded", function () {
+        const savedTheme = localStorage.getItem("theme");
+        const themeIcon = document.getElementById("theme-icon");
+
+        if (savedTheme === "dark") {
+          document.body.classList.add("dark-theme");
+          themeIcon.textContent = "☀️";
+        }
+      });
+
+      // Scroll to Top Functionality
+      function scrollToTop() {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }
+
+      // Reading Progress Bar
+      function updateProgressBar() {
+        const progressBar = document.getElementById("progressBar");
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const scrollTop =
+          window.pageYOffset || document.documentElement.scrollTop;
+        const scrollPercent =
+          (scrollTop / (documentHeight - windowHeight)) * 100;
+
+        if (progressBar) {
+          progressBar.style.width = scrollPercent + "%";
+        }
+      }
+
+      // Show/Hide Scroll to Top button based on scroll position
+      window.addEventListener("scroll", function () {
+        const scrollBtn = document.querySelector(".scroll-to-top");
+        if (window.pageYOffset > 300) {
+          scrollBtn.classList.add("show");
+        } else {
+          scrollBtn.classList.remove("show");
+        }
+
+        // Update progress bar
+        updateProgressBar();
+      });
+
+      // Also handle scroll for content area (Docsify specific)
+      window.addEventListener("load", function () {
+        const content = document.querySelector(".content");
+        if (content) {
+          content.addEventListener("scroll", function () {
+            const scrollBtn = document.querySelector(".scroll-to-top");
+            if (content.scrollTop > 300) {
+              scrollBtn.classList.add("show");
+            } else {
+              scrollBtn.classList.remove("show");
+            }
+          });
+        }
+
+        // Initial progress bar update
+        updateProgressBar();
+      });
+
+      // Keyboard Shortcuts
+      let keyboardHelpTimeout;
+      document.addEventListener("keydown", function (e) {
+        // T key - Toggle theme
+        if (e.key === "t" || e.key === "T") {
+          if (!isInputFocused()) {
+            e.preventDefault();
+            toggleTheme();
+          }
+        }
+
+        // Ctrl+K or Cmd+K - Focus search
+        if ((e.ctrlKey || e.metaKey) && e.key === "k") {
+          e.preventDefault();
+          const searchInput = document.querySelector(".search input");
+          if (searchInput) {
+            searchInput.focus();
+          }
+        }
+
+        // ? key - Show keyboard shortcuts
+        if (e.key === "?") {
+          if (!isInputFocused()) {
+            e.preventDefault();
+            const helpBox = document.getElementById("keyboardHelp");
+            helpBox.classList.add("show");
+
+            clearTimeout(keyboardHelpTimeout);
+            keyboardHelpTimeout = setTimeout(function () {
+              helpBox.classList.remove("show");
+            }, 5000);
+          }
+        }
+
+        // Home key - Scroll to top
+        if (e.key === "Home") {
+          if (!isInputFocused()) {
+            e.preventDefault();
+            scrollToTop();
+          }
+        }
+
+        // Escape - Close keyboard help
+        if (e.key === "Escape") {
+          const helpBox = document.getElementById("keyboardHelp");
+          helpBox.classList.remove("show");
+        }
+      });
+
+      // Helper function to check if input is focused
+      function isInputFocused() {
+        const activeElement = document.activeElement;
+        return (
+          activeElement.tagName === "INPUT" ||
+          activeElement.tagName === "TEXTAREA" ||
+          activeElement.isContentEditable
+        );
+      }
+
+      // Show keyboard shortcuts on first visit
+      window.addEventListener("load", function () {
+        setTimeout(function () {
+          const firstVisit = !localStorage.getItem("visited");
+          if (firstVisit) {
+            const helpBox = document.getElementById("keyboardHelp");
+            helpBox.classList.add("show");
+            localStorage.setItem("visited", "true");
+
+            setTimeout(function () {
+              helpBox.classList.remove("show");
+            }, 7000);
+          }
+        }, 2000);
+      });
+
+      // Performance optimization: Debounce scroll events
+      let scrollTimeout;
+      window.addEventListener(
+        "scroll",
+        function () {
+          if (scrollTimeout) {
+            window.cancelAnimationFrame(scrollTimeout);
+          }
+          scrollTimeout = window.requestAnimationFrame(function () {
+            updateProgressBar();
+          });
+        },
+        { passive: true }
+      );
+    </script>
+
+    <!-- PWA Service Worker Registration and Management -->
+    <script>
+      // PWA Install Banner Management
+      let deferredPrompt;
+      const installBanner = document.getElementById("pwaInstallBanner");
+      const updateToast = document.getElementById("pwaUpdateToast");
+      const offlineIndicator = document.getElementById("offlineIndicator");
+
+      // Capture install prompt event
+      window.addEventListener("beforeinstallprompt", (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+
+        // Show install banner if not dismissed before
+        const installDismissed = localStorage.getItem("pwa-install-dismissed");
+        const installDismissedTime = localStorage.getItem(
+          "pwa-install-dismissed-time"
+        );
+
+        // Show banner if never dismissed, or if dismissed more than 7 days ago
+        if (
+          !installDismissed ||
+          (installDismissedTime &&
+            Date.now() - parseInt(installDismissedTime) >
+              7 * 24 * 60 * 60 * 1000)
+        ) {
+          setTimeout(() => {
+            installBanner.classList.add("show");
+          }, 5000); // Show after 5 seconds
+        }
+      });
+
+      // Install PWA function
+      window.installPWA = async function () {
+        if (!deferredPrompt) {
+          console.log("Install prompt not available");
+          return;
+        }
+
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+
+        if (outcome === "accepted") {
+          console.log("PWA installed successfully");
+          localStorage.setItem("pwa-installed", "true");
+        }
+
+        deferredPrompt = null;
+        installBanner.classList.remove("show");
+      };
+
+      // Dismiss install banner
+      window.dismissInstallBanner = function () {
+        installBanner.classList.remove("show");
+        localStorage.setItem("pwa-install-dismissed", "true");
+        localStorage.setItem(
+          "pwa-install-dismissed-time",
+          Date.now().toString()
+        );
+      };
+
+      // Check if app is already installed
+      window.addEventListener("appinstalled", () => {
+        console.log("PWA was installed");
+        localStorage.setItem("pwa-installed", "true");
+        installBanner.classList.remove("show");
+
+        // Show success message
+        setTimeout(() => {
+          alert(
+            "✅ Interview Notes installed successfully! You can now access it from your home screen."
+          );
+        }, 500);
+      });
+
+      // Service Worker Registration
+      if ("serviceWorker" in navigator) {
+        let refreshing = false;
+
+        navigator.serviceWorker
+          .register("./sw.js")
+          .then((registration) => {
+            console.log("Service Worker registered:", registration);
+
+            // Check for updates periodically
+            setInterval(() => {
+              registration.update();
+            }, 60 * 60 * 1000); // Check every hour
+
+            // Handle service worker updates
+            registration.addEventListener("updatefound", () => {
+              const newWorker = registration.installing;
+
+              newWorker.addEventListener("statechange", () => {
+                if (
+                  newWorker.state === "installed" &&
+                  navigator.serviceWorker.controller
+                ) {
+                  // New service worker available
+                  updateToast.classList.add("show");
+
+                  // Auto-hide after 30 seconds
+                  setTimeout(() => {
+                    updateToast.classList.remove("show");
+                  }, 30000);
+                }
+              });
+            });
+          })
+          .catch((error) => {
+            console.error("Service Worker registration failed:", error);
+          });
+
+        // Handle service worker controlling the page
+        navigator.serviceWorker.addEventListener("controllerchange", () => {
+          if (refreshing) return;
+          refreshing = true;
+          window.location.reload();
+        });
+      }
+
+      // Update PWA function
+      window.updatePWA = function () {
+        updateToast.classList.remove("show");
+
+        if ("serviceWorker" in navigator) {
+          navigator.serviceWorker.getRegistration().then((registration) => {
+            if (registration && registration.waiting) {
+              // Tell the waiting service worker to skip waiting
+              registration.waiting.postMessage({ type: "SKIP_WAITING" });
+            }
+          });
+        }
+      };
+
+      // Online/Offline Detection
+      function updateOnlineStatus() {
+        if (navigator.onLine) {
+          offlineIndicator.classList.remove("show");
+        } else {
+          offlineIndicator.classList.add("show");
+        }
+      }
+
+      window.addEventListener("online", updateOnlineStatus);
+      window.addEventListener("offline", updateOnlineStatus);
+      updateOnlineStatus(); // Check initial status
+
+      // iOS standalone mode detection
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+      const isStandalone =
+        window.navigator.standalone === true ||
+        window.matchMedia("(display-mode: standalone)").matches;
+
+      if (isIOS && !isStandalone) {
+        // Show iOS-specific install instructions if needed
+        const installDismissed = localStorage.getItem("pwa-install-dismissed");
+        if (!installDismissed) {
+          setTimeout(() => {
+            const iosBanner = document.getElementById("pwaInstallBanner");
+            if (iosBanner && !iosBanner.classList.contains("show")) {
+              iosBanner.querySelector("p").textContent =
+                'Tap the Share button below and select "Add to Home Screen"';
+              iosBanner.querySelector(".install-btn").textContent = "Got it";
+              iosBanner.classList.add("show");
+            }
+          }, 7000);
+        }
+      }
+
+      // Cache statistics (for debugging)
+      if ("serviceWorker" in navigator && "caches" in window) {
+        caches.keys().then((cacheNames) => {
+          console.log("Active caches:", cacheNames);
+        });
+      }
+
+      // Display standalone mode indicator
+      if (isStandalone) {
+        console.log("🎉 Running in standalone mode (PWA)");
+        document.body.classList.add("pwa-mode");
+      }
+
+      // Prevent zoom on double-tap for better app experience (mobile)
+      let lastTouchEnd = 0;
+      document.addEventListener(
+        "touchend",
+        function (event) {
+          const now = Date.now();
+          if (now - lastTouchEnd <= 300) {
+            event.preventDefault();
+          }
+          lastTouchEnd = now;
+        },
+        false
+      );
+    </script>
+  </body>
+</html>
