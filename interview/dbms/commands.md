@@ -9,9 +9,11 @@
    - [INSERT Statement](#insert-statement)
    - [UPDATE Statement](#update-statement)
    - [DELETE Statement](#delete-statement)
+   - [UPSERT (INSERT or UPDATE)](#upsert-insert-or-update)
    - [ORDER BY](#order-by)
-   - [LIMIT](#limit)
+   - [LIMIT / FETCH FIRST](#limit--fetch-first)
    - [DISTINCT](#distinct)
+   - [NULL Handling](#null-handling)
 3. [Intermediate Level](#intermediate-level)
    - [Aggregate Functions](#aggregate-functions)
    - [GROUP BY](#group-by)
@@ -34,6 +36,14 @@
    - [Pivot and Unpivot](#pivot-and-unpivot)
    - [Advanced Joins](#advanced-joins)
    - [Query Optimization](#query-optimization)
+5. [Additional Advanced Topics](#additional-advanced-topics)
+   - [Table Creation and Constraints](#table-creation-and-constraints)
+   - [Sequences and Identity Columns](#sequences-and-identity-columns)
+   - [Temporary Tables](#temporary-tables)
+   - [Variables and Dynamic SQL](#variables-and-dynamic-sql)
+   - [JSON Operations](#json-operations)
+   - [Database Security and Permissions](#database-security-and-permissions)
+   - [SQL Query Execution Order](#sql-query-execution-order)
 
 ---
 
@@ -256,6 +266,58 @@ WHERE department_id IN (
 
 ---
 
+### UPSERT (INSERT or UPDATE)
+
+UPSERT operations insert a new row or update if it already exists.
+
+**Examples:**
+
+```sql
+-- PostgreSQL - INSERT ... ON CONFLICT
+INSERT INTO employees (employee_id, first_name, last_name, salary)
+VALUES (101, 'John', 'Doe', 55000)
+ON CONFLICT (employee_id)
+DO UPDATE SET
+    first_name = EXCLUDED.first_name,
+    last_name = EXCLUDED.last_name,
+    salary = EXCLUDED.salary;
+
+-- MySQL - INSERT ... ON DUPLICATE KEY UPDATE
+INSERT INTO employees (employee_id, first_name, last_name, salary)
+VALUES (101, 'John', 'Doe', 55000)
+ON DUPLICATE KEY UPDATE
+    first_name = VALUES(first_name),
+    salary = VALUES(salary);
+
+-- MySQL - REPLACE (deletes then inserts)
+REPLACE INTO employees (employee_id, first_name, last_name, salary)
+VALUES (101, 'John', 'Doe', 55000);
+
+-- SQL Server - MERGE statement
+MERGE INTO employees AS target
+USING (SELECT 101 AS employee_id, 'John' AS first_name, 'Doe' AS last_name, 55000 AS salary) AS source
+ON target.employee_id = source.employee_id
+WHEN MATCHED THEN
+    UPDATE SET
+        first_name = source.first_name,
+        salary = source.salary
+WHEN NOT MATCHED THEN
+    INSERT (employee_id, first_name, last_name, salary)
+    VALUES (source.employee_id, source.first_name, source.last_name, source.salary);
+
+-- MERGE with DELETE
+MERGE INTO inventory AS target
+USING updates AS source
+ON target.product_id = source.product_id
+WHEN MATCHED AND source.quantity = 0 THEN DELETE
+WHEN MATCHED THEN UPDATE SET quantity = source.quantity
+WHEN NOT MATCHED THEN INSERT VALUES (source.product_id, source.quantity);
+```
+
+**Explanation:** UPSERT prevents duplicate key errors and simplifies insert-or-update logic. Each database system has different syntax.
+
+---
+
 ### ORDER BY
 
 The `ORDER BY` clause sorts the result set.
@@ -298,47 +360,85 @@ ORDER BY LENGTH(first_name);
 
 ---
 
-### LIMIT
+### LIMIT / FETCH FIRST
 
 The `LIMIT` clause restricts the number of rows returned.
 
 **Syntax:**
 
 ```sql
+-- LIMIT (MySQL, PostgreSQL)
 SELECT column1, column2
 FROM table_name
 LIMIT number;
+
+-- FETCH FIRST (ANSI SQL standard - PostgreSQL, Oracle, SQL Server 2012+)
+SELECT column1, column2
+FROM table_name
+FETCH FIRST number ROWS ONLY;
 
 -- With offset
 SELECT column1, column2
 FROM table_name
 LIMIT number OFFSET offset_value;
+
+-- FETCH with OFFSET (ANSI SQL)
+SELECT column1, column2
+FROM table_name
+OFFSET offset_value ROWS
+FETCH NEXT number ROWS ONLY;
 ```
 
 **Examples:**
 
 ```sql
--- Get first 10 employees
+-- Get first 10 employees (LIMIT)
 SELECT * FROM employees
 LIMIT 10;
+
+-- Get first 10 employees (FETCH FIRST - ANSI standard)
+SELECT * FROM employees
+FETCH FIRST 10 ROWS ONLY;
 
 -- Get top 5 highest paid employees
 SELECT * FROM employees
 ORDER BY salary DESC
 LIMIT 5;
 
--- Pagination: Skip first 10, get next 10
+-- Pagination: Skip first 10, get next 10 (LIMIT)
 SELECT * FROM employees
 ORDER BY employee_id
 LIMIT 10 OFFSET 10;
+
+-- Pagination with FETCH FIRST (more portable)
+SELECT * FROM employees
+ORDER BY employee_id
+OFFSET 10 ROWS
+FETCH NEXT 10 ROWS ONLY;
 
 -- Alternative pagination syntax (MySQL)
 SELECT * FROM employees
 ORDER BY employee_id
 LIMIT 10, 10;  -- LIMIT offset, count
+
+-- SQL Server TOP
+SELECT TOP 10 * FROM employees;
+
+-- SQL Server TOP with PERCENT
+SELECT TOP 10 PERCENT * FROM employees ORDER BY salary DESC;
+
+-- FETCH with ties (include rows with same value as last row)
+SELECT * FROM employees
+ORDER BY salary DESC
+FETCH FIRST 5 ROWS WITH TIES;
 ```
 
-**Explanation:** `LIMIT` is useful for pagination and getting top N results. Note: SQL Server uses `TOP`, Oracle uses `ROWNUM` or `FETCH FIRST`.
+**Explanation:**
+
+- `LIMIT` is common in MySQL and PostgreSQL
+- `FETCH FIRST` is the ANSI SQL standard (more portable)
+- SQL Server uses `TOP` or `OFFSET...FETCH`
+- Oracle uses `ROWNUM` or `FETCH FIRST`
 
 ---
 
@@ -370,6 +470,89 @@ FROM employees;
 ```
 
 **Explanation:** `DISTINCT` operates on the entire row. If you select multiple columns, it returns unique combinations of those columns.
+
+---
+
+### NULL Handling
+
+Working with NULL values requires special functions and operators.
+
+**Examples:**
+
+```sql
+-- Check for NULL
+SELECT * FROM employees WHERE manager_id IS NULL;
+SELECT * FROM employees WHERE bonus IS NOT NULL;
+
+-- COALESCE: Return first non-null value
+SELECT first_name,
+       COALESCE(phone, mobile, email, 'No contact') AS contact_info
+FROM employees;
+
+-- COALESCE with multiple columns
+SELECT employee_id,
+       COALESCE(commission, 0) AS commission,
+       salary + COALESCE(commission, 0) AS total_compensation
+FROM employees;
+
+-- NULLIF: Return NULL if two values are equal
+SELECT product_name,
+       price,
+       NULLIF(discount_price, price) AS discount  -- Returns NULL if no discount
+FROM products;
+
+-- Avoid division by zero
+SELECT order_id,
+       total_amount,
+       total_amount / NULLIF(quantity, 0) AS price_per_unit
+FROM orders;
+
+-- IFNULL / ISNULL (MySQL / SQL Server)
+SELECT first_name, IFNULL(bonus, 0) AS bonus FROM employees;  -- MySQL
+SELECT first_name, ISNULL(bonus, 0) AS bonus FROM employees;  -- SQL Server
+
+-- NVL (Oracle)
+SELECT first_name, NVL(bonus, 0) AS bonus FROM employees;
+
+-- NULL in comparisons (results in NULL, not TRUE or FALSE)
+SELECT * FROM employees WHERE salary > NULL;  -- Returns no rows
+SELECT * FROM employees WHERE salary = NULL;  -- Wrong! Use IS NULL
+
+-- NULL in calculations
+SELECT
+    salary,
+    bonus,
+    salary + bonus AS wrong_total,           -- NULL if bonus is NULL
+    salary + COALESCE(bonus, 0) AS correct_total  -- Treats NULL as 0
+FROM employees;
+
+-- NULL in aggregates (ignored by aggregate functions)
+SELECT
+    COUNT(*) AS total_rows,
+    COUNT(manager_id) AS employees_with_manager,  -- Excludes NULLs
+    AVG(commission) AS avg_commission  -- Calculates average of non-NULL values only
+FROM employees;
+
+-- NULL-safe equality operator (MySQL)
+SELECT * FROM employees WHERE bonus <=> NULL;  -- Same as IS NULL
+
+-- CASE with NULL handling
+SELECT first_name,
+       CASE
+           WHEN bonus IS NULL THEN 'No Bonus'
+           WHEN bonus = 0 THEN 'Zero Bonus'
+           ELSE CONCAT('$', bonus)
+       END AS bonus_status
+FROM employees;
+```
+
+**Important NULL Rules:**
+
+- NULL is not equal to anything, including NULL
+- NULL in any arithmetic operation results in NULL
+- Use `IS NULL` or `IS NOT NULL`, never `= NULL`
+- Aggregate functions ignore NULL values (except `COUNT(*)`)
+- `COALESCE` is standard SQL and preferred over database-specific functions
 
 ---
 
@@ -1907,10 +2090,9 @@ LEFT JOIN departments d2 ON m.department_id = d2.department_id;
 SELECT e.first_name, e.salary, dept_avg.avg_salary
 FROM employees e
 JOIN (
-    SELECT department_id,
+    SELECT DISTINCT department_id,
            AVG(salary) OVER (PARTITION BY department_id) AS avg_salary
     FROM employees
-    GROUP BY department_id
 ) dept_avg ON e.department_id = dept_avg.department_id;
 
 -- Anti-join (find rows without matches)
@@ -2142,6 +2324,118 @@ DROP TABLE IF EXISTS employees;
 TRUNCATE TABLE employees;
 ```
 
+---
+
+### Sequences and Identity Columns
+
+Sequences generate unique numeric values, commonly used for primary keys.
+
+**Examples:**
+
+```sql
+-- PostgreSQL - SERIAL (auto-creates sequence)
+CREATE TABLE employees (
+    employee_id SERIAL PRIMARY KEY,
+    first_name VARCHAR(50)
+);
+
+-- PostgreSQL - Explicit sequence creation
+CREATE SEQUENCE emp_id_seq
+    START WITH 1000
+    INCREMENT BY 1
+    MINVALUE 1000
+    MAXVALUE 999999
+    CACHE 20;
+
+-- Use sequence
+INSERT INTO employees (employee_id, first_name)
+VALUES (nextval('emp_id_seq'), 'John');
+
+-- Get current sequence value (last value returned by nextval)
+SELECT currval('emp_id_seq');
+
+-- Get next value without incrementing (peek)
+SELECT last_value FROM emp_id_seq;
+
+-- Reset sequence
+ALTER SEQUENCE emp_id_seq RESTART WITH 1000;
+
+-- Set sequence to max existing value
+SELECT setval('emp_id_seq', (SELECT MAX(employee_id) FROM employees));
+
+-- Drop sequence
+DROP SEQUENCE IF EXISTS emp_id_seq;
+
+-- MySQL - AUTO_INCREMENT
+CREATE TABLE employees (
+    employee_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(50)
+);
+
+-- Set AUTO_INCREMENT starting value
+ALTER TABLE employees AUTO_INCREMENT = 1000;
+
+-- Get last inserted ID
+SELECT LAST_INSERT_ID();
+
+-- Reset AUTO_INCREMENT
+ALTER TABLE employees AUTO_INCREMENT = 1;
+
+-- SQL Server - IDENTITY
+CREATE TABLE employees (
+    employee_id INT IDENTITY(1,1) PRIMARY KEY,  -- IDENTITY(start, increment)
+    first_name VARCHAR(50)
+);
+
+-- Get last identity value
+SELECT SCOPE_IDENTITY();  -- Current scope
+SELECT @@IDENTITY;        -- Current session
+SELECT IDENT_CURRENT('employees');  -- Specific table
+
+-- Reseed identity
+DBCC CHECKIDENT ('employees', RESEED, 1000);
+
+-- Insert specific identity value
+SET IDENTITY_INSERT employees ON;
+INSERT INTO employees (employee_id, first_name) VALUES (5000, 'John');
+SET IDENTITY_INSERT employees OFF;
+
+-- Oracle - Sequence (traditional)
+CREATE SEQUENCE emp_id_seq
+    START WITH 1000
+    INCREMENT BY 1
+    NOCACHE;
+
+-- Use in INSERT
+INSERT INTO employees (employee_id, first_name)
+VALUES (emp_id_seq.NEXTVAL, 'John');
+
+-- Use in SELECT
+SELECT emp_id_seq.NEXTVAL FROM DUAL;
+SELECT emp_id_seq.CURRVAL FROM DUAL;
+
+-- Oracle 12c+ - Identity column
+CREATE TABLE employees (
+    employee_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    first_name VARCHAR2(50)
+);
+
+-- Or with options
+CREATE TABLE employees (
+    employee_id NUMBER GENERATED BY DEFAULT AS IDENTITY (START WITH 1000) PRIMARY KEY,
+    first_name VARCHAR2(50)
+);
+```
+
+**Best Practices:**
+
+- Use `SERIAL`/`IDENTITY`/`AUTO_INCREMENT` for simple auto-incrementing keys
+- Use explicit sequences when you need more control (multiple tables sharing sequence, gaps allowed)
+- Always handle concurrent inserts properly
+- Don't rely on gaps being filled - sequences can skip values
+
+---
+
 ### Temporary Tables
 
 ```sql
@@ -2217,15 +2511,290 @@ FROM employees;
 
 ---
 
+### Database Security and Permissions
+
+Managing user access and permissions is critical for database security.
+
+**Examples:**
+
+```sql
+-- CREATE USER
+-- MySQL
+CREATE USER 'john_doe'@'localhost' IDENTIFIED BY 'secure_password123';
+CREATE USER 'app_user'@'%' IDENTIFIED BY 'password';  -- % allows from any host
+
+-- PostgreSQL
+CREATE USER john_doe WITH PASSWORD 'secure_password123';
+CREATE USER readonly_user WITH PASSWORD 'password' LOGIN;
+
+-- SQL Server
+CREATE LOGIN john_doe WITH PASSWORD = 'secure_password123';
+CREATE USER john_doe FOR LOGIN john_doe;
+
+-- GRANT privileges
+-- MySQL - Grant specific privileges
+GRANT SELECT, INSERT, UPDATE ON database_name.* TO 'app_user'@'localhost';
+GRANT SELECT ON database_name.employees TO 'readonly_user'@'localhost';
+GRANT ALL PRIVILEGES ON database_name.* TO 'admin_user'@'localhost';
+
+-- PostgreSQL
+GRANT SELECT, INSERT, UPDATE ON ALL TABLES IN SCHEMA public TO app_user;
+GRANT SELECT ON employees TO readonly_user;
+GRANT ALL PRIVILEGES ON DATABASE company_db TO admin_user;
+
+-- SQL Server
+GRANT SELECT, INSERT, UPDATE ON employees TO app_user;
+GRANT EXECUTE ON SCHEMA::dbo TO app_user;
+
+-- Grant with grant option (allow user to grant to others)
+GRANT SELECT ON employees TO manager_user WITH GRANT OPTION;
+
+-- REVOKE privileges
+-- MySQL
+REVOKE INSERT, UPDATE ON database_name.employees FROM 'app_user'@'localhost';
+REVOKE ALL PRIVILEGES ON database_name.* FROM 'old_admin'@'localhost';
+
+-- PostgreSQL
+REVOKE INSERT, UPDATE ON employees FROM app_user;
+
+-- SQL Server
+REVOKE SELECT ON employees FROM readonly_user;
+
+-- Create and assign roles
+-- PostgreSQL
+CREATE ROLE readonly;
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO readonly;
+GRANT readonly TO john_doe;
+
+CREATE ROLE app_role;
+GRANT SELECT, INSERT, UPDATE, DELETE ON employees TO app_role;
+GRANT app_role TO app_user;
+
+-- MySQL
+CREATE ROLE 'app_readonly';
+GRANT SELECT ON database_name.* TO 'app_readonly';
+GRANT 'app_readonly' TO 'user1'@'localhost';
+
+-- SQL Server
+CREATE ROLE app_readonly;
+GRANT SELECT ON SCHEMA::dbo TO app_readonly;
+ALTER ROLE app_readonly ADD MEMBER app_user;
+
+-- View user privileges
+-- MySQL
+SHOW GRANTS FOR 'app_user'@'localhost';
+SHOW GRANTS FOR CURRENT_USER;
+
+-- PostgreSQL
+SELECT * FROM information_schema.role_table_grants
+WHERE grantee = 'app_user';
+
+-- SQL Server
+SELECT * FROM sys.database_permissions
+WHERE grantee_principal_id = USER_ID('app_user');
+
+-- Change password
+-- MySQL
+ALTER USER 'john_doe'@'localhost' IDENTIFIED BY 'new_password123';
+SET PASSWORD FOR 'john_doe'@'localhost' = PASSWORD('new_password123');
+
+-- PostgreSQL
+ALTER USER john_doe WITH PASSWORD 'new_password123';
+
+-- SQL Server
+ALTER LOGIN john_doe WITH PASSWORD = 'new_password123';
+
+-- Drop user
+-- MySQL
+DROP USER 'old_user'@'localhost';
+
+-- PostgreSQL
+DROP USER IF EXISTS old_user;
+
+-- SQL Server
+DROP USER old_user;
+DROP LOGIN old_user;
+
+-- Row-level security (PostgreSQL)
+CREATE POLICY employee_policy ON employees
+    FOR SELECT
+    USING (department = current_user);
+
+ALTER TABLE employees ENABLE ROW LEVEL SECURITY;
+
+-- SQL Server Row-Level Security
+CREATE FUNCTION dbo.fn_securitypredicate(@Department AS VARCHAR(50))
+    RETURNS TABLE
+WITH SCHEMABINDING
+AS
+    RETURN SELECT 1 AS fn_securitypredicate_result
+    WHERE @Department = USER_NAME();
+
+CREATE SECURITY POLICY DepartmentFilter
+ADD FILTER PREDICATE dbo.fn_securitypredicate(department)
+ON dbo.employees;
+```
+
+**Security Best Practices:**
+
+1. **Principle of Least Privilege**: Grant only necessary permissions
+2. **Use Roles**: Group permissions into roles rather than granting to individual users
+3. **Never Use Root/SA in Applications**: Create dedicated application users
+4. **Rotate Passwords Regularly**: Change passwords periodically
+5. **Use Strong Passwords**: Enforce password complexity requirements
+6. **Audit Access**: Regularly review user permissions
+7. **Prevent SQL Injection**: Always use parameterized queries/prepared statements
+8. **Encrypt Sensitive Data**: Use encryption for passwords, SSNs, etc.
+9. **Limit Network Access**: Restrict database access to specific IP addresses
+10. **Regular Backups**: Maintain secure backups with restricted access
+
+**SQL Injection Prevention:**
+
+```sql
+-- ❌ DANGEROUS - SQL Injection vulnerable
+-- Bad: String concatenation
+query = "SELECT * FROM users WHERE username = '" + userInput + "'";
+
+-- ✅ SAFE - Use parameterized queries
+-- Python with parameterized query
+cursor.execute("SELECT * FROM users WHERE username = ?", (userInput,))
+
+-- Java PreparedStatement
+PreparedStatement stmt = conn.prepareStatement("SELECT * FROM users WHERE username = ?");
+stmt.setString(1, userInput);
+
+-- PHP PDO
+$stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username");
+$stmt->execute(['username' => $userInput]);
+```
+
+---
+
+### SQL Query Execution Order
+
+Understanding the order in which SQL processes clauses helps write better queries.
+
+**Logical Processing Order:**
+
+```
+1. FROM (including JOINs)
+2. WHERE
+3. GROUP BY
+4. HAVING
+5. SELECT
+6. DISTINCT
+7. ORDER BY
+8. LIMIT / OFFSET / FETCH
+```
+
+**Examples:**
+
+```sql
+-- This query is processed in the following order:
+SELECT department, AVG(salary) AS avg_salary          -- 5. SELECT calculated
+FROM employees                                         -- 1. FROM table
+WHERE hire_date > '2020-01-01'                        -- 2. WHERE filter applied
+GROUP BY department                                    -- 3. GROUP BY aggregation
+HAVING AVG(salary) > 60000                            -- 4. HAVING filter groups
+ORDER BY avg_salary DESC                              -- 6. ORDER BY sort results
+LIMIT 10;                                             -- 7. LIMIT restrict rows
+
+-- Why you can't use SELECT aliases in WHERE
+SELECT salary * 1.1 AS adjusted_salary
+FROM employees
+WHERE adjusted_salary > 50000;  -- ❌ ERROR: adjusted_salary not yet calculated
+
+-- Fix: Use the expression directly or subquery
+SELECT salary * 1.1 AS adjusted_salary
+FROM employees
+WHERE salary * 1.1 > 50000;  -- ✅ Works
+
+-- Or use a subquery/CTE
+WITH adjusted AS (
+    SELECT salary * 1.1 AS adjusted_salary
+    FROM employees
+)
+SELECT * FROM adjusted
+WHERE adjusted_salary > 50000;  -- ✅ Works
+
+-- Why you CAN use SELECT aliases in ORDER BY and HAVING
+SELECT department, AVG(salary) AS avg_salary
+FROM employees
+GROUP BY department
+HAVING avg_salary > 50000      -- ✅ Works (HAVING after SELECT in some DBs)
+ORDER BY avg_salary DESC;      -- ✅ Works (ORDER BY after SELECT)
+
+-- Window functions are calculated after WHERE but with full result set
+SELECT
+    employee_id,
+    salary,
+    department,
+    AVG(salary) OVER (PARTITION BY department) AS dept_avg
+FROM employees
+WHERE hire_date > '2020-01-01'  -- Filters before window function
+ORDER BY department, salary;
+
+-- Execution order affects performance
+-- Good: Filter early with WHERE
+SELECT department, COUNT(*)
+FROM employees
+WHERE status = 'Active'  -- Reduces rows before grouping
+GROUP BY department;
+
+-- Less efficient: Filter late with HAVING
+SELECT department, COUNT(*)
+FROM employees
+GROUP BY department
+HAVING MAX(CASE WHEN status = 'Active' THEN 1 ELSE 0 END) = 1;
+```
+
+**Key Takeaways:**
+
+1. **WHERE before GROUP BY**: Filter rows before aggregation
+2. **HAVING after GROUP BY**: Filter groups after aggregation
+3. **SELECT after WHERE/GROUP BY**: Can't use aliases in WHERE
+4. **ORDER BY is last**: Most expensive operation, happens after everything else
+5. **JOINs in FROM**: Happen before WHERE filtering
+6. **Subqueries**: Follow same rules within their scope
+
+**Common Mistakes:**
+
+```sql
+-- ❌ Can't use column alias in WHERE
+SELECT employee_id, salary * 1.1 AS new_salary
+FROM employees
+WHERE new_salary > 50000;  -- Error
+
+-- ❌ Can't use aggregate in WHERE
+SELECT department, AVG(salary)
+FROM employees
+WHERE AVG(salary) > 50000  -- Error: Use HAVING instead
+GROUP BY department;
+
+-- ❌ Can't reference aggregated column in SELECT when not in GROUP BY
+SELECT department, employee_id, AVG(salary)  -- Error: employee_id not aggregated
+FROM employees
+GROUP BY department;
+
+-- ✅ Correct: Include in GROUP BY or aggregate it
+SELECT department, COUNT(employee_id), AVG(salary)
+FROM employees
+GROUP BY department;
+```
+
+---
+
 ## Summary
 
 This guide covered SQL from beginner to advanced:
 
-**Beginner**: SELECT, WHERE, INSERT, UPDATE, DELETE, ORDER BY, LIMIT, DISTINCT
+**Beginner**: SELECT, WHERE, INSERT, UPDATE, DELETE, UPSERT, ORDER BY, LIMIT/FETCH FIRST, DISTINCT, NULL Handling
 
 **Intermediate**: Aggregates, GROUP BY, HAVING, JOINs, UNION, Subqueries, CASE, String/Date functions
 
 **Advanced**: Window functions, CTEs, Recursive CTEs, Views, Indexes, Transactions, Stored Procedures, Triggers, PIVOT, Query Optimization
+
+**Additional Topics**: Table Creation, Constraints, Sequences/Identity, Temporary Tables, Variables, Dynamic SQL, JSON Operations, Security & Permissions, Query Execution Order
 
 **Key Takeaways:**
 
@@ -2237,6 +2806,9 @@ This guide covered SQL from beginner to advanced:
 - Choose the right tool: views, procedures, or triggers
 - Always test and optimize performance
 - Practice regularly with real-world scenarios
+- Understand SQL execution order (FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT)
+- Never concatenate user input - always use parameterized queries
+- Handle NULL values explicitly with COALESCE, IS NULL, etc.
 
 **Best Practices:**
 
@@ -2250,5 +2822,88 @@ This guide covered SQL from beginner to advanced:
 8. Keep database schema normalized (usually)
 9. Use constraints to enforce data integrity
 10. Regular backups and maintenance
+11. Apply principle of least privilege for user permissions
+12. Use UPSERT operations to avoid duplicate key errors
+13. Prefer FETCH FIRST over LIMIT for portability
+14. Always handle NULL values explicitly in calculations
+15. Use sequences/identity columns for auto-incrementing IDs
+
+**Security Reminders:**
+
+- ❌ Never: `"SELECT * FROM users WHERE id = " + userInput`
+- ✅ Always: Use parameterized queries/prepared statements
+- Grant minimum necessary permissions to application users
+- Rotate passwords regularly and use strong passwords
+- Implement row-level security when needed
+- Regularly audit user access and permissions
+
+**Performance Tips:**
+
+- Index foreign keys and frequently queried columns
+- Filter early with WHERE, not late with HAVING
+- Use EXISTS instead of IN for large subqueries
+- Avoid functions on indexed columns in WHERE clause
+- Use covering indexes when possible
+- Choose appropriate isolation levels for transactions
+- Regular maintenance: VACUUM, ANALYZE, OPTIMIZE
+
+**Common Mistakes to Avoid:**
+
+- Using `= NULL` instead of `IS NULL`
+- Forgetting WHERE clause in UPDATE/DELETE (updates/deletes everything!)
+- Not handling NULL in calculations (results in NULL)
+- Using SELECT aliases in WHERE clause
+- Using aggregates in WHERE instead of HAVING
+- Over-indexing (slows INSERT/UPDATE/DELETE)
+- Not using parameterized queries (SQL injection risk)
 
 Happy querying! 🚀
+
+---
+
+## Quick Reference: Database-Specific Syntax
+
+Common operations across different database systems:
+
+| Operation            | MySQL                         | PostgreSQL                 | SQL Server                 | Oracle                          |
+| -------------------- | ----------------------------- | -------------------------- | -------------------------- | ------------------------------- |
+| **Auto-increment**   | `AUTO_INCREMENT`              | `SERIAL` or `GENERATED`    | `IDENTITY(1,1)`            | `GENERATED AS IDENTITY`         |
+| **String concat**    | `CONCAT()` or `+`             | `\|\|` or `CONCAT()`       | `+`                        | `\|\|` or `CONCAT()`            |
+| **Limit rows**       | `LIMIT n`                     | `LIMIT n`                  | `TOP n` or `FETCH FIRST`   | `FETCH FIRST n ROWS`            |
+| **Current date**     | `CURDATE()` or `NOW()`        | `CURRENT_DATE`             | `GETDATE()`                | `SYSDATE`                       |
+| **String length**    | `LENGTH()` or `CHAR_LENGTH()` | `LENGTH()`                 | `LEN()`                    | `LENGTH()`                      |
+| **Substring**        | `SUBSTRING()`                 | `SUBSTRING()`              | `SUBSTRING()`              | `SUBSTR()`                      |
+| **If null**          | `IFNULL(col, val)`            | `COALESCE(col, val)`       | `ISNULL(col, val)`         | `NVL(col, val)`                 |
+| **Date add**         | `DATE_ADD()`                  | `+ INTERVAL`               | `DATEADD()`                | `+ INTERVAL`                    |
+| **Upsert**           | `ON DUPLICATE KEY`            | `ON CONFLICT`              | `MERGE`                    | `MERGE`                         |
+| **Temp table**       | `CREATE TEMPORARY TABLE`      | `CREATE TEMP TABLE`        | `CREATE TABLE #temp`       | `CREATE GLOBAL TEMPORARY TABLE` |
+| **Show tables**      | `SHOW TABLES`                 | `\dt` or query `pg_tables` | `SELECT * FROM sys.tables` | `SELECT * FROM user_tables`     |
+| **Describe table**   | `DESCRIBE table`              | `\d table`                 | `sp_help table`            | `DESCRIBE table`                |
+| **Regex match**      | `REGEXP` or `RLIKE`           | `~`                        | `LIKE` (limited)           | `REGEXP_LIKE()`                 |
+| **Case insensitive** | Collation-dependent           | `ILIKE`                    | `COLLATE`                  | `UPPER()` comparison            |
+| **Boolean type**     | `TINYINT(1)` or `BOOLEAN`     | `BOOLEAN`                  | `BIT`                      | `NUMBER(1)`                     |
+| **Last insert ID**   | `LAST_INSERT_ID()`            | `RETURNING` or `currval()` | `SCOPE_IDENTITY()`         | `RETURNING`                     |
+
+**Common Function Equivalents:**
+
+| Function          | MySQL                   | PostgreSQL              | SQL Server              | Oracle         |
+| ----------------- | ----------------------- | ----------------------- | ----------------------- | -------------- |
+| Convert to string | `CAST()` or `CONVERT()` | `CAST()` or `::text`    | `CAST()` or `CONVERT()` | `TO_CHAR()`    |
+| Convert to number | `CAST()`                | `CAST()` or `::integer` | `CAST()` or `CONVERT()` | `TO_NUMBER()`  |
+| Convert to date   | `STR_TO_DATE()`         | `TO_DATE()` or `::date` | `CONVERT()`             | `TO_DATE()`    |
+| Random number     | `RAND()`                | `RANDOM()`              | `RAND()`                | `DBMS_RANDOM`  |
+| Row number        | `ROW_NUMBER()`          | `ROW_NUMBER()`          | `ROW_NUMBER()`          | `ROW_NUMBER()` |
+| String replace    | `REPLACE()`             | `REPLACE()`             | `REPLACE()`             | `REPLACE()`    |
+| Round number      | `ROUND()`               | `ROUND()`               | `ROUND()`               | `ROUND()`      |
+| Absolute value    | `ABS()`                 | `ABS()`                 | `ABS()`                 | `ABS()`        |
+
+**Transaction Syntax:**
+
+| Operation | MySQL               | PostgreSQL       | SQL Server              | Oracle           |
+| --------- | ------------------- | ---------------- | ----------------------- | ---------------- |
+| Begin     | `START TRANSACTION` | `BEGIN`          | `BEGIN TRANSACTION`     | `BEGIN`          |
+| Commit    | `COMMIT`            | `COMMIT`         | `COMMIT`                | `COMMIT`         |
+| Rollback  | `ROLLBACK`          | `ROLLBACK`       | `ROLLBACK`              | `ROLLBACK`       |
+| Savepoint | `SAVEPOINT name`    | `SAVEPOINT name` | `SAVE TRANSACTION name` | `SAVEPOINT name` |
+
+**Note**: Always refer to official documentation for your specific database version as syntax may vary.

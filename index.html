@@ -19,7 +19,16 @@
     <meta name="author" content="Interview Notes" />
 
     <!-- PWA Meta Tags -->
-    <meta name="theme-color" content="#7c3aed" />
+    <meta
+      name="theme-color"
+      content="#0969da"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#0d1117"
+      media="(prefers-color-scheme: dark)"
+    />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta
       name="apple-mobile-web-app-status-bar-style"
@@ -37,133 +46,361 @@
     <!-- Apple Touch Icons -->
     <link
       rel="apple-touch-icon"
-      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='15%25' fill='%237c3aed'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='130' fill='white'>📚</text></svg>"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='15%25' fill='%230969da'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='130' fill='white'>📚</text></svg>"
     />
 
     <!-- PWA Manifest -->
     <link rel="manifest" href="./manifest.json" />
 
-    <!-- Theme: Vue (options: vue, buble, dark, pure) -->
+    <!-- Use minimal theme as base for custom GitHub styling -->
     <link
       rel="stylesheet"
       href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css"
     />
 
     <style>
+      /* GitHub Light Theme Colors (Default) */
       :root {
         --base-font-size: 16px;
-        --theme-color: #7c3aed;
-        --theme-color-dark: #6d28d9;
+
+        /* GitHub Light Theme */
+        --gh-canvas-default: #ffffff;
+        --gh-canvas-subtle: #f6f8fa;
+        --gh-canvas-inset: #ffffff;
+        --gh-border-default: #d0d7de;
+        --gh-border-muted: #d8dee4;
+
+        --gh-fg-default: #1f2328;
+        --gh-fg-muted: #656d76;
+        --gh-fg-subtle: #6e7781;
+
+        --gh-accent-fg: #0969da;
+        --gh-accent-emphasis: #0969da;
+
+        --gh-danger-fg: #d1242f;
+        --gh-success-fg: #1a7f37;
+        --gh-attention-fg: #9a6700;
+
+        --gh-neutral-muted: rgba(175, 184, 193, 0.2);
+
+        /* Code colors */
+        --gh-code-bg: #f6f8fa;
+        --gh-code-fg: #1f2328;
+
+        /* Sidebar */
+        --gh-sidebar-bg: #f6f8fa;
+        --gh-sidebar-border: #d0d7de;
+
+        /* Syntax highlighting - GitHub Light */
+        --gh-syntax-keyword: #cf222e;
+        --gh-syntax-string: #0a3069;
+        --gh-syntax-comment: #6e7781;
+        --gh-syntax-function: #8250df;
+        --gh-syntax-variable: #953800;
+        --gh-syntax-number: #0550ae;
       }
 
-      /* Custom styling for better readability */
-      .markdown-section code {
-        border-radius: 4px;
-        padding: 2px 6px;
-        background-color: #f8f8f8;
+      /* === GitHub Light Theme (Default) === */
+
+      body {
+        background-color: var(--gh-canvas-default);
+        color: var(--gh-fg-default);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
+          Helvetica, Arial, sans-serif;
       }
 
-      .markdown-section pre > code {
-        padding: 1.2em;
-        line-height: 1.5;
-      }
-
-      /* Sidebar styling */
+      /* Sidebar - GitHub Style */
       .sidebar {
-        background-color: #fafafa;
+        background-color: var(--gh-sidebar-bg);
+        border-right: 1px solid var(--gh-sidebar-border);
       }
 
       .sidebar-nav > ul > li > a {
         font-weight: 600;
         margin-top: 8px;
+        color: var(--gh-fg-default);
       }
 
-      /* Search box styling */
+      .sidebar-nav li a {
+        color: var(--gh-fg-default);
+      }
+
+      .sidebar-nav li a:hover {
+        color: var(--gh-accent-fg);
+        text-decoration: none;
+      }
+
+      .app-name-link {
+        color: var(--gh-fg-default) !important;
+        font-weight: 600;
+      }
+
+      /* Content - GitHub Style */
+      .content {
+        background-color: var(--gh-canvas-default);
+      }
+
+      .markdown-section {
+        color: var(--gh-fg-default);
+        max-width: 900px;
+      }
+
+      .markdown-section h1,
+      .markdown-section h2,
+      .markdown-section h3,
+      .markdown-section h4,
+      .markdown-section h5,
+      .markdown-section h6 {
+        color: var(--gh-fg-default);
+        font-weight: 600;
+        border-bottom: none;
+      }
+
+      .markdown-section h1 {
+        font-size: 2em;
+        padding-bottom: 0.3em;
+        border-bottom: 1px solid var(--gh-border-muted);
+      }
+
+      .markdown-section h2 {
+        font-size: 1.5em;
+        padding-bottom: 0.3em;
+        border-bottom: 1px solid var(--gh-border-muted);
+      }
+
+      /* Links - GitHub Style */
+      .markdown-section a {
+        color: var(--gh-accent-fg);
+        text-decoration: none;
+      }
+
+      .markdown-section a:hover {
+        text-decoration: underline;
+      }
+
+      /* Code - GitHub Style */
+      .markdown-section code {
+        background-color: var(--gh-code-bg);
+        color: var(--gh-code-fg);
+        border-radius: 6px;
+        padding: 0.2em 0.4em;
+        font-size: 85%;
+        font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+          "Liberation Mono", monospace;
+      }
+
+      .markdown-section pre {
+        background-color: var(--gh-code-bg);
+        border-radius: 6px;
+        padding: 16px;
+        overflow: auto;
+        line-height: 1.45;
+        border: 1px solid var(--gh-border-default);
+      }
+
+      .markdown-section pre > code {
+        background-color: transparent;
+        color: var(--gh-fg-default);
+        padding: 0;
+        border-radius: 0;
+        font-size: 85%;
+        line-height: 1.45;
+      }
+
+      /* Blockquote - GitHub Style */
+      .markdown-section blockquote {
+        color: var(--gh-fg-muted);
+        border-left: 4px solid var(--gh-border-default);
+        padding: 0 1em;
+        margin: 0 0 16px 0;
+        background-color: transparent;
+      }
+
+      /* Tables - GitHub Style */
+      .markdown-section table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        margin: 16px 0;
+        display: block;
+        overflow: auto;
+      }
+
+      .markdown-section table thead {
+        background-color: transparent;
+      }
+
+      .markdown-section table th {
+        font-weight: 600;
+        padding: 6px 13px;
+        border: 1px solid var(--gh-border-default);
+        background-color: var(--gh-canvas-subtle);
+      }
+
+      .markdown-section table td {
+        padding: 6px 13px;
+        border: 1px solid var(--gh-border-default);
+      }
+
+      .markdown-section table tr {
+        background-color: var(--gh-canvas-default);
+        border-top: 1px solid var(--gh-border-muted);
+      }
+
+      .markdown-section table tr:nth-child(2n) {
+        background-color: var(--gh-canvas-subtle);
+      }
+
+      /* Horizontal Rule - GitHub Style */
+      .markdown-section hr {
+        height: 0.25em;
+        padding: 0;
+        margin: 24px 0;
+        background-color: var(--gh-border-default);
+        border: 0;
+      }
+
+      /* Search box - GitHub Style */
       .search input {
-        border-radius: 20px;
+        background-color: var(--gh-canvas-subtle);
+        border: 1px solid var(--gh-border-default);
+        border-radius: 6px;
+        color: var(--gh-fg-default);
+        padding: 6px 12px;
       }
 
-      /* Dark Theme Toggle Button */
+      .search input:focus {
+        border-color: var(--gh-accent-emphasis);
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.3);
+      }
+
+      .search input::placeholder {
+        color: var(--gh-fg-muted);
+      }
+
+      /* Theme Toggle Button - GitHub Style */
       .theme-toggle {
         position: fixed;
         bottom: 80px;
         right: 20px;
         width: 50px;
         height: 50px;
-        border-radius: 50%;
-        background: var(--theme-color);
-        color: white;
-        border: none;
+        border-radius: 6px;
+        background: var(--gh-canvas-subtle);
+        color: var(--gh-fg-default);
+        border: 1px solid var(--gh-border-default);
         cursor: pointer;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
         z-index: 999;
-        font-size: 22px;
+        font-size: 20px;
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: all 0.3s ease;
+        transition: all 0.2s ease;
       }
 
       .theme-toggle:hover {
-        transform: scale(1.1);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        background: var(--gh-canvas-default);
+        border-color: var(--gh-fg-muted);
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
       }
 
-      /* Scroll to Top Button */
+      /* Scroll to Top Button - GitHub Style */
       .scroll-to-top {
         position: fixed;
         bottom: 20px;
         right: 20px;
         width: 50px;
         height: 50px;
-        border-radius: 50%;
-        background: var(--theme-color);
+        border-radius: 6px;
+        background: var(--gh-accent-emphasis);
         color: white;
         border: none;
         cursor: pointer;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
         z-index: 999;
         font-size: 24px;
         display: none;
         align-items: center;
         justify-content: center;
-        transition: all 0.3s ease;
+        transition: all 0.2s ease;
       }
 
       .scroll-to-top:hover {
-        transform: scale(1.1);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        background: #0860ca;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
       }
 
       .scroll-to-top.show {
         display: flex;
       }
 
-      /* Dark Theme Styles */
+      /* === GitHub Dark Theme === */
       body.dark-theme {
-        background-color: #1e1e1e;
-        color: #d4d4d4;
+        /* GitHub Dark Theme Colors */
+        --gh-canvas-default: #0d1117;
+        --gh-canvas-subtle: #161b22;
+        --gh-canvas-inset: #010409;
+        --gh-border-default: #30363d;
+        --gh-border-muted: #21262d;
+
+        --gh-fg-default: #e6edf3;
+        --gh-fg-muted: #8d96a0;
+        --gh-fg-subtle: #6e7681;
+
+        --gh-accent-fg: #2f81f7;
+        --gh-accent-emphasis: #1f6feb;
+
+        --gh-danger-fg: #f85149;
+        --gh-success-fg: #3fb950;
+        --gh-attention-fg: #d29922;
+
+        --gh-neutral-muted: rgba(110, 118, 129, 0.4);
+
+        /* Code colors */
+        --gh-code-bg: #161b22;
+        --gh-code-fg: #e6edf3;
+
+        /* Sidebar */
+        --gh-sidebar-bg: #0d1117;
+        --gh-sidebar-border: #30363d;
+
+        /* Syntax highlighting - GitHub Dark */
+        --gh-syntax-keyword: #ff7b72;
+        --gh-syntax-string: #a5d6ff;
+        --gh-syntax-comment: #8b949e;
+        --gh-syntax-function: #d2a8ff;
+        --gh-syntax-variable: #ffa657;
+        --gh-syntax-number: #79c0ff;
+
+        background-color: var(--gh-canvas-default);
+        color: var(--gh-fg-default);
       }
 
       body.dark-theme .sidebar {
-        background-color: #252526;
-        border-right: 1px solid #3e3e42;
+        background-color: var(--gh-sidebar-bg);
+        border-right: 1px solid var(--gh-sidebar-border);
       }
 
       body.dark-theme .sidebar-nav li a {
-        color: #d4d4d4;
+        color: var(--gh-fg-default);
       }
 
       body.dark-theme .sidebar-nav li a:hover {
-        color: var(--theme-color);
+        color: var(--gh-accent-fg);
       }
 
       body.dark-theme .app-name-link {
-        color: #ffffff;
+        color: var(--gh-fg-default) !important;
+      }
+
+      body.dark-theme .content {
+        background-color: var(--gh-canvas-default);
       }
 
       body.dark-theme .markdown-section {
-        color: #d4d4d4;
+        color: var(--gh-fg-default);
       }
 
       body.dark-theme .markdown-section h1,
@@ -172,97 +409,121 @@
       body.dark-theme .markdown-section h4,
       body.dark-theme .markdown-section h5,
       body.dark-theme .markdown-section h6 {
-        color: #ffffff;
+        color: var(--gh-fg-default);
+        border-bottom-color: var(--gh-border-muted);
+      }
+
+      body.dark-theme .markdown-section a {
+        color: var(--gh-accent-fg);
       }
 
       body.dark-theme .markdown-section code {
-        background-color: #2d2d2d;
-        color: #ce9178;
+        background-color: var(--gh-code-bg);
+        color: var(--gh-code-fg);
       }
 
       body.dark-theme .markdown-section pre {
-        background-color: #1e1e1e;
+        background-color: var(--gh-code-bg);
+        border-color: var(--gh-border-default);
       }
 
       body.dark-theme .markdown-section pre > code {
-        background-color: #1e1e1e;
-        color: #d4d4d4;
+        background-color: transparent;
+        color: var(--gh-fg-default);
+      }
+
+      body.dark-theme .markdown-section blockquote {
+        color: var(--gh-fg-muted);
+        border-left-color: var(--gh-border-default);
+      }
+
+      body.dark-theme .markdown-section table th {
+        background-color: var(--gh-canvas-subtle);
+        border-color: var(--gh-border-default);
+        color: var(--gh-fg-default);
+      }
+
+      body.dark-theme .markdown-section table td {
+        border-color: var(--gh-border-default);
+      }
+
+      body.dark-theme .markdown-section table tr {
+        background-color: var(--gh-canvas-default);
+        border-top-color: var(--gh-border-muted);
+      }
+
+      body.dark-theme .markdown-section table tr:nth-child(2n) {
+        background-color: var(--gh-canvas-subtle);
+      }
+
+      body.dark-theme .markdown-section hr {
+        background-color: var(--gh-border-default);
       }
 
       body.dark-theme .search input {
-        background-color: #3c3c3c;
-        color: #d4d4d4;
-        border: 1px solid #555;
+        background-color: var(--gh-canvas-inset);
+        color: var(--gh-fg-default);
+        border: 1px solid var(--gh-border-default);
+      }
+
+      body.dark-theme .search input:focus {
+        border-color: var(--gh-accent-emphasis);
+        box-shadow: 0 0 0 3px rgba(31, 111, 235, 0.3);
       }
 
       body.dark-theme .search input::placeholder {
-        color: #999;
+        color: var(--gh-fg-muted);
       }
 
       body.dark-theme .search .results-panel {
-        background-color: #252526;
-        border: 1px solid #3e3e42;
+        background-color: var(--gh-canvas-subtle);
+        border: 1px solid var(--gh-border-default);
       }
 
       body.dark-theme .search .matching-post {
-        border-bottom: 1px solid #3e3e42;
+        border-bottom: 1px solid var(--gh-border-default);
       }
 
       body.dark-theme .search .matching-post:hover {
-        background-color: #2d2d2d;
+        background-color: var(--gh-canvas-inset);
       }
 
       body.dark-theme .docsify-pagination-container {
-        color: #d4d4d4;
+        color: var(--gh-fg-default);
+      }
+
+      body.dark-theme .pagination-item a {
+        color: var(--gh-accent-fg);
       }
 
       body.dark-theme .pagination-item-label svg {
-        fill: #d4d4d4;
+        fill: var(--gh-fg-default);
       }
 
-      body.dark-theme table {
-        border-color: #3e3e42;
+      body.dark-theme .theme-toggle {
+        background: var(--gh-canvas-subtle);
+        color: var(--gh-fg-default);
+        border-color: var(--gh-border-default);
       }
 
-      body.dark-theme table thead {
-        background-color: #2d2d2d;
+      body.dark-theme .theme-toggle:hover {
+        background: var(--gh-canvas-inset);
+        border-color: var(--gh-fg-muted);
       }
 
-      body.dark-theme table tr {
-        border-bottom: 1px solid #3e3e42;
-      }
-
-      body.dark-theme table tbody tr:hover {
-        background-color: #2d2d2d;
-      }
-
-      body.dark-theme blockquote {
-        border-left-color: var(--theme-color);
-        background-color: #2d2d2d;
-        color: #d4d4d4;
-      }
-
-      body.dark-theme hr {
-        border-color: #3e3e42;
-      }
-
-      /* Reading Progress Bar */
+      /* Reading Progress Bar - GitHub Style */
       .progress-bar {
         position: fixed;
         top: 0;
         left: 0;
         width: 0%;
         height: 3px;
-        background: linear-gradient(
-          90deg,
-          var(--theme-color),
-          var(--theme-color-dark)
-        );
+        background: var(--gh-accent-emphasis);
         z-index: 9999;
         transition: width 0.2s ease;
       }
 
-      /* Better Loading Animation */
+      /* Loading Animation - GitHub Style */
       #app {
         min-height: 100vh;
         display: flex;
@@ -272,12 +533,12 @@
 
       #app:empty::before {
         content: "";
-        width: 50px;
-        height: 50px;
-        border: 4px solid #f3f3f3;
-        border-top: 4px solid var(--theme-color);
+        width: 40px;
+        height: 40px;
+        border: 3px solid var(--gh-border-default);
+        border-top: 3px solid var(--gh-accent-emphasis);
         border-radius: 50%;
-        animation: spin 1s linear infinite;
+        animation: spin 0.8s linear infinite;
       }
 
       @keyframes spin {
@@ -289,67 +550,83 @@
         }
       }
 
-      /* Enhanced Code Blocks */
-      .markdown-section pre {
-        position: relative;
-        border-radius: 8px;
-        margin: 1.2em 0;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      }
-
-      .markdown-section pre > code {
-        border-radius: 8px;
-        font-size: 0.9em;
-      }
-
-      /* Active sidebar link highlighting */
+      /* Active sidebar link - GitHub Style */
       .sidebar-nav li.active > a {
-        color: var(--theme-color);
-        font-weight: bold;
-        border-right: 3px solid var(--theme-color);
-      }
-
-      /* Better table styling */
-      .markdown-section table {
-        display: table;
-        width: 100%;
-        border-collapse: collapse;
-        margin: 1.5em 0;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      }
-
-      .markdown-section table thead {
-        background: linear-gradient(
-          135deg,
-          var(--theme-color),
-          var(--theme-color-dark)
-        );
-        color: white;
-      }
-
-      .markdown-section table th {
+        color: var(--gh-accent-fg) !important;
         font-weight: 600;
-        padding: 12px 15px;
       }
 
-      .markdown-section table td {
-        padding: 12px 15px;
+      .sidebar-nav .active {
+        border-right: 2px solid var(--gh-accent-emphasis);
       }
 
-      /* Keyboard shortcut indicator */
+      /* Override Docsify Vue theme colors */
+      .sidebar ul li a {
+        color: var(--gh-fg-default) !important;
+      }
+
+      .sidebar ul li a:hover {
+        color: var(--gh-accent-fg) !important;
+      }
+
+      /* Override any #34495e from Vue theme */
+      .sidebar-toggle,
+      .sidebar-toggle-button {
+        background-color: transparent !important;
+        color: var(--gh-fg-default) !important;
+      }
+
+      body.dark-theme .sidebar-toggle,
+      body.dark-theme .sidebar-toggle-button {
+        color: var(--gh-fg-default) !important;
+      }
+
+      /* Pagination buttons - GitHub style instead of #34495e */
+      .pagination-item a {
+        color: var(--gh-accent-fg) !important;
+      }
+
+      .pagination-item a:hover {
+        background-color: var(--gh-canvas-subtle) !important;
+        color: var(--gh-accent-fg) !important;
+      }
+
+      body.dark-theme .pagination-item a:hover {
+        background-color: var(--gh-canvas-subtle) !important;
+      }
+
+      /* Cover page if used */
+      .cover h1,
+      .cover h2 {
+        color: var(--gh-fg-default) !important;
+      }
+
+      body.dark-theme .cover h1,
+      body.dark-theme .cover h2 {
+        color: var(--gh-fg-default) !important;
+      }
+
+      /* Anchor links */
+      .anchor span {
+        color: var(--gh-accent-fg) !important;
+      }
+
+      /* Keyboard shortcut indicator - GitHub Style */
       .keyboard-shortcuts {
         position: fixed;
         bottom: 150px;
         right: 20px;
-        background: rgba(0, 0, 0, 0.8);
-        color: white;
-        padding: 10px 15px;
-        border-radius: 8px;
+        background: var(--gh-canvas-subtle);
+        color: var(--gh-fg-default);
+        padding: 12px 16px;
+        border-radius: 6px;
         font-size: 12px;
         display: none;
         z-index: 998;
-        max-width: 200px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        max-width: 220px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15),
+          0 0 0 1px var(--gh-border-default);
+        border: 1px solid var(--gh-border-default);
       }
 
       .keyboard-shortcuts.show {
@@ -369,11 +646,22 @@
       }
 
       .keyboard-shortcuts kbd {
-        background: #555;
-        padding: 2px 6px;
-        border-radius: 3px;
-        font-family: monospace;
+        background: var(--gh-code-bg);
+        color: var(--gh-fg-default);
+        padding: 3px 7px;
+        border-radius: 6px;
+        font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+          monospace;
         font-size: 11px;
+        border: 1px solid var(--gh-border-default);
+        box-shadow: inset 0 -1px 0 var(--gh-border-default);
+      }
+
+      body.dark-theme .keyboard-shortcuts {
+        background: var(--gh-canvas-subtle);
+        border-color: var(--gh-border-default);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4),
+          0 0 0 1px var(--gh-border-default);
       }
 
       /* Mobile Responsive Adjustments */
@@ -449,8 +737,60 @@
         }
 
         a {
-          color: #0366d6 !important;
+          color: var(--gh-accent-fg) !important;
         }
+      }
+
+      /* GitHub-style lists */
+      .markdown-section ul,
+      .markdown-section ol {
+        padding-left: 2em;
+      }
+
+      .markdown-section li {
+        margin: 0.25em 0;
+      }
+
+      /* GitHub-style task lists */
+      .markdown-section input[type="checkbox"] {
+        margin-right: 0.5em;
+      }
+
+      /* GitHub-style warnings/notes */
+      .markdown-section .tip,
+      .markdown-section .warn,
+      .markdown-section .danger {
+        padding: 12px 16px;
+        border-left: 4px solid;
+        border-radius: 6px;
+        margin: 16px 0;
+      }
+
+      .markdown-section .tip {
+        background-color: rgba(26, 127, 55, 0.1);
+        border-left-color: var(--gh-success-fg);
+      }
+
+      .markdown-section .warn {
+        background-color: rgba(154, 103, 0, 0.1);
+        border-left-color: var(--gh-attention-fg);
+      }
+
+      .markdown-section .danger {
+        background-color: rgba(209, 36, 47, 0.1);
+        border-left-color: var(--gh-danger-fg);
+      }
+
+      body.dark-theme .markdown-section .tip {
+        background-color: rgba(63, 185, 80, 0.15);
+      }
+
+      body.dark-theme .markdown-section .warn {
+        background-color: rgba(210, 153, 34, 0.15);
+      }
+
+      body.dark-theme .markdown-section .danger {
+        background-color: rgba(248, 81, 73, 0.15);
       }
 
       /* Smooth scrolling for all browsers */
@@ -458,87 +798,61 @@
         scroll-behavior: smooth;
       }
 
-      /* Better link styling */
-      .markdown-section a {
-        text-decoration: none;
-        border-bottom: 1px solid transparent;
-        transition: border-bottom 0.2s ease;
-      }
-
-      .markdown-section a:hover {
-        border-bottom: 1px solid var(--theme-color);
-      }
-
-      /* External link indicator */
-      .markdown-section
-        a[href^="http"]:not([href*="github.io"]):not(
-          [href*="localhost"]
-        ):after {
-        content: " ↗";
-        font-size: 0.8em;
-        opacity: 0.6;
-      }
-
-      /* Better blockquote styling */
-      .markdown-section blockquote {
-        border-left: 4px solid var(--theme-color);
-        padding: 15px 20px;
-        margin: 1.5em 0;
-        background: #f8f9fa;
-        border-radius: 4px;
-      }
-
-      body.dark-theme .markdown-section blockquote {
-        background-color: #2d2d2d;
-      }
-
-      /* Selection color */
+      /* Selection color - GitHub Style */
       ::selection {
-        background-color: var(--theme-color);
-        color: white;
+        background-color: #0969da;
+        background-color: rgba(9, 105, 218, 0.25);
       }
 
       ::-moz-selection {
-        background-color: var(--theme-color);
-        color: white;
+        background-color: #0969da;
+        background-color: rgba(9, 105, 218, 0.25);
       }
 
-      /* Tooltip for buttons */
+      body.dark-theme ::selection {
+        background-color: rgba(47, 129, 247, 0.25);
+      }
+
+      body.dark-theme ::-moz-selection {
+        background-color: rgba(47, 129, 247, 0.25);
+      }
+
+      /* Tooltip for buttons - GitHub Style */
       .theme-toggle:hover::before,
       .scroll-to-top:hover::before {
         content: attr(title);
         position: absolute;
         bottom: 60px;
         right: 0;
-        background: rgba(0, 0, 0, 0.8);
-        color: white;
-        padding: 5px 10px;
-        border-radius: 4px;
+        background: var(--gh-canvas-subtle);
+        color: var(--gh-fg-default);
+        padding: 6px 12px;
+        border-radius: 6px;
         font-size: 12px;
         white-space: nowrap;
         pointer-events: none;
         animation: fadeIn 0.3s ease;
+        border: 1px solid var(--gh-border-default);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
       }
 
-      /* PWA Install Banner */
+      /* PWA Install Banner - GitHub Style */
       .pwa-install-banner {
         position: fixed;
         bottom: 0;
         left: 0;
         right: 0;
-        background: linear-gradient(
-          135deg,
-          var(--theme-color),
-          var(--theme-color-dark)
-        );
+        background: var(--gh-accent-emphasis);
         color: white;
-        padding: 15px 20px;
+        padding: 16px 24px;
         display: none;
         align-items: center;
         justify-content: space-between;
-        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 -1px 0 var(--gh-border-default),
+          0 -4px 12px rgba(0, 0, 0, 0.15);
         z-index: 1000;
         animation: slideUp 0.3s ease;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
       }
 
       @keyframes slideUp {
@@ -560,67 +874,70 @@
       }
 
       .pwa-install-content h4 {
-        margin: 0 0 5px 0;
-        font-size: 16px;
+        margin: 0 0 4px 0;
+        font-size: 14px;
+        font-weight: 600;
       }
 
       .pwa-install-content p {
         margin: 0;
-        font-size: 13px;
+        font-size: 12px;
         opacity: 0.9;
       }
 
       .pwa-install-buttons {
         display: flex;
-        gap: 10px;
+        gap: 8px;
       }
 
       .pwa-install-buttons button {
-        padding: 8px 20px;
+        padding: 5px 16px;
         border: none;
         border-radius: 6px;
         cursor: pointer;
         font-size: 14px;
-        font-weight: 600;
-        transition: all 0.3s ease;
+        font-weight: 500;
+        transition: all 0.2s ease;
       }
 
       .pwa-install-buttons .install-btn {
         background: white;
-        color: var(--theme-color);
+        color: var(--gh-accent-emphasis);
       }
 
       .pwa-install-buttons .install-btn:hover {
-        transform: scale(1.05);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        background: #f0f0f0;
       }
 
       .pwa-install-buttons .dismiss-btn {
         background: transparent;
         color: white;
-        border: 1px solid white;
+        border: 1px solid rgba(255, 255, 255, 0.3);
       }
 
       .pwa-install-buttons .dismiss-btn:hover {
         background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.5);
       }
 
-      /* PWA Update Toast */
+      /* PWA Update Toast - GitHub Style */
       .pwa-update-toast {
         position: fixed;
         top: 20px;
         right: 20px;
-        background: #333;
-        color: white;
-        padding: 15px 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        background: var(--gh-canvas-subtle);
+        color: var(--gh-fg-default);
+        padding: 12px 16px;
+        border-radius: 6px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15),
+          0 0 0 1px var(--gh-border-default);
         display: none;
         align-items: center;
-        gap: 15px;
+        gap: 12px;
         z-index: 1001;
         max-width: 350px;
         animation: slideInRight 0.3s ease;
+        border: 1px solid var(--gh-border-default);
       }
 
       @keyframes slideInRight {
@@ -639,43 +956,53 @@
       }
 
       .pwa-update-toast button {
-        background: var(--theme-color);
+        background: var(--gh-accent-emphasis);
         color: white;
         border: none;
-        padding: 8px 16px;
-        border-radius: 4px;
+        padding: 5px 16px;
+        border-radius: 6px;
         cursor: pointer;
-        font-weight: 600;
+        font-weight: 500;
         white-space: nowrap;
+        font-size: 14px;
       }
 
       .pwa-update-toast button:hover {
-        background: var(--theme-color-dark);
+        background: #0860ca;
       }
 
-      /* Offline Indicator */
+      body.dark-theme .pwa-update-toast {
+        background: var(--gh-canvas-subtle);
+        border-color: var(--gh-border-default);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4),
+          0 0 0 1px var(--gh-border-default);
+      }
+
+      /* Offline Indicator - GitHub Style */
       .offline-indicator {
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
-        background: #ff9800;
-        color: white;
-        padding: 10px;
+        background: var(--gh-attention-fg);
+        color: var(--gh-canvas-default);
+        padding: 8px;
         text-align: center;
         font-size: 14px;
-        font-weight: 600;
+        font-weight: 500;
         z-index: 9998;
         display: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
       }
 
       .offline-indicator.show {
         display: block;
       }
 
-      body.dark-theme .pwa-update-toast {
-        background: #2d2d2d;
-        border: 1px solid #3e3e42;
+      body.dark-theme .offline-indicator {
+        background: var(--gh-attention-fg);
+        color: var(--gh-canvas-inset);
+        border-bottom: 1px solid var(--gh-border-default);
       }
 
       /* Mobile adjustments for PWA banner */
@@ -806,8 +1133,8 @@
           successText: "✓ Copied!",
         },
 
-        // Syntax highlighting theme
-        themeColor: "#7c3aed",
+        // GitHub theme color
+        themeColor: "#0969da",
 
         // Footer
         plugins: [

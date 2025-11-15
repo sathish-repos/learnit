@@ -1,4 +1,22 @@
-# 150 Java Programs - Complete Collection
+# 170 Java Programs - Complete Collection
+
+## 📖 How to Use This Guide
+
+Each program now includes comprehensive documentation:
+
+- **Purpose**: Clear explanation of what the program does
+- **Concepts**: Java concepts and techniques demonstrated
+- **Use Case**: Real-world applications and when to use it
+- **Time/Space Complexity**: Performance analysis for algorithmic problems
+- **Interview Tips**: Common questions and optimization hints
+- **Code**: Complete, tested, working implementation
+- **Output**: Expected results with examples
+
+**Legend:**
+
+- ⭐ = Frequently asked in interviews
+- 🔥 = Must-know for FAANG companies
+- 💡 = Important concept demonstration
 
 ## Table of Contents
 
@@ -13,12 +31,22 @@
 9. [Java 8+ Features (126-135)](#java-8-features)
 10. [Multithreading Programs (136-145)](#multithreading-programs)
 11. [Advanced Programs (146-150)](#advanced-programs)
+12. [Exception Handling (151-155)](#exception-handling-programs)
+13. [Regular Expressions (156-160)](#regular-expressions)
+14. [Date and Time API (161-165)](#date-and-time-api)
+15. [Design Patterns (166-170)](#design-patterns)
 
 ---
 
 ## Basic Programs
 
 ### 1. Hello World
+
+**Purpose:** The classic first program in any language. Prints "Hello, World!" to the console.
+
+**Concepts:** Basic Java syntax, main method, System.out.println()
+
+**Use Case:** Understanding Java program structure and basic output.
 
 ```java
 public class HelloWorld {
@@ -33,6 +61,12 @@ public class HelloWorld {
 ---
 
 ### 2. Add Two Numbers
+
+**Purpose:** Demonstrates basic arithmetic operations by adding two integers.
+
+**Concepts:** Variables, data types (int), arithmetic operators, output formatting
+
+**Use Case:** Understanding variable declaration, arithmetic operations, and displaying results.
 
 ```java
 public class AddTwoNumbers {
@@ -51,6 +85,12 @@ public class AddTwoNumbers {
 ---
 
 ### 3. Check Even or Odd
+
+**Purpose:** Determines if a number is even or odd using the modulus operator.
+
+**Concepts:** Conditional statements (if-else), modulus operator (%), boolean logic
+
+**Use Case:** Input validation, number classification, understanding remainder operations.
 
 ```java
 public class EvenOdd {
@@ -71,6 +111,12 @@ public class EvenOdd {
 ---
 
 ### 4. Swap Two Numbers
+
+**Purpose:** Demonstrates three different methods to swap two variables without using arrays.
+
+**Concepts:** Temporary variables, arithmetic operations, XOR bitwise operator, variable manipulation
+
+**Use Case:** Sorting algorithms, data manipulation, understanding bitwise operations, interview technique questions.
 
 ```java
 public class SwapNumbers {
@@ -118,6 +164,12 @@ Using XOR: a = 10, b = 5
 
 ### 5. Find Largest of Three Numbers
 
+**Purpose:** Finds the maximum among three numbers using conditional operators and Math class.
+
+**Concepts:** Ternary operator (?:), nested conditions, Math.max() method, comparison operators
+
+**Use Case:** Decision making, finding maximum values, understanding nested ternary operators.
+
 ```java
 public class LargestOfThree {
     public static void main(String[] args) {
@@ -139,6 +191,14 @@ public class LargestOfThree {
 ---
 
 ### 6. Calculate Factorial
+
+**Purpose:** Calculates factorial of a number using both iterative and recursive approaches.
+
+**Concepts:** Loops (for), recursion, base cases, function calls, long data type for large numbers
+
+**Use Case:** Understanding recursion vs iteration, mathematical calculations, interview favorite.
+
+**Time Complexity:** O(n) for both approaches | **Space Complexity:** O(1) iterative, O(n) recursive (call stack)
 
 ```java
 public class Factorial {
@@ -168,6 +228,16 @@ public class Factorial {
 ---
 
 ### 7. Check Prime Number
+
+**Purpose:** Determines if a number is prime using optimized algorithm.
+
+**Concepts:** Functions/methods, boolean returns, Math.sqrt(), loop optimization, edge case handling
+
+**Use Case:** Number theory, cryptography basics, optimization techniques (check only up to √n).
+
+**Time Complexity:** O(√n) | **Space Complexity:** O(1)
+
+**Key Optimization:** Only checks divisibility up to square root and skips even numbers after 2.
 
 ```java
 public class PrimeNumber {
@@ -202,6 +272,16 @@ public class PrimeNumber {
 
 ### 8. Fibonacci Series
 
+**Purpose:** Generates Fibonacci sequence where each number is sum of previous two numbers.
+
+**Concepts:** Loops, sequence generation, pattern recognition, recursion (alternative approach)
+
+**Use Case:** Dynamic programming intro, sequence patterns, understanding exponential vs linear time.
+
+**Time Complexity:** O(n) iterative, O(2^n) recursive | **Space Complexity:** O(1) iterative, O(n) recursive
+
+**Interview Tip:** Recursive version without memoization is inefficient - always mention optimization!
+
 ```java
 public class FibonacciSeries {
     public static void main(String[] args) {
@@ -234,6 +314,16 @@ public class FibonacciSeries {
 
 ### 9. Palindrome Number
 
+**Purpose:** Checks if a number reads same forwards and backwards by reversing it.
+
+**Concepts:** While loops, modulus and division operators, number reversal, comparison
+
+**Use Case:** Pattern recognition, number manipulation, commonly asked in interviews.
+
+**Time Complexity:** O(log n) where n is the number (number of digits) | **Space Complexity:** O(1)
+
+**Related:** See Program #72 for Palindrome String
+
 ```java
 public class PalindromeNumber {
     public static void main(String[] args) {
@@ -261,6 +351,14 @@ public class PalindromeNumber {
 ---
 
 ### 10. Armstrong Number
+
+**Purpose:** Checks if sum of digits raised to the power of number of digits equals the number itself (e.g., 153 = 1³ + 5³ + 3³).
+
+**Concepts:** Math.pow(), digit extraction, String.valueOf(), while loops
+
+**Use Case:** Number theory, pattern recognition, interview questions.
+
+**Time Complexity:** O(d) where d is number of digits | **Space Complexity:** O(1)
 
 ```java
 public class ArmstrongNumber {
@@ -291,6 +389,14 @@ public class ArmstrongNumber {
 
 ### 11. Sum of Digits
 
+**Purpose:** Calculates sum of all digits in a number.
+
+**Concepts:** Digit extraction using modulus/division, accumulation
+
+**Use Case:** Digital root calculations, checksum algorithms, number analysis.
+
+**Time Complexity:** O(log n) | **Space Complexity:** O(1)
+
 ```java
 public class SumOfDigits {
     public static void main(String[] args) {
@@ -312,6 +418,14 @@ public class SumOfDigits {
 ---
 
 ### 12. Reverse a Number
+
+**Purpose:** Reverses the digits of a number (12345 becomes 54321).
+
+**Concepts:** Number manipulation, digit extraction, building numbers
+
+**Use Case:** Palindrome checking, number games, interview basics.
+
+**Time Complexity:** O(log n) | **Space Complexity:** O(1)
 
 ```java
 public class ReverseNumber {
@@ -336,6 +450,16 @@ public class ReverseNumber {
 
 ### 13. GCD (Greatest Common Divisor)
 
+**Purpose:** Finds GCD using Euclidean algorithm - most efficient method.
+
+**Concepts:** Recursion, Euclidean algorithm, mathematical properties, modulus operation
+
+**Use Case:** Fraction simplification, cryptography (RSA), number theory problems.
+
+**Time Complexity:** O(log min(a,b)) | **Space Complexity:** O(log min(a,b)) due to recursion
+
+**Interview Tip:** Euclidean algorithm is the optimal approach - mention this!
+
 ```java
 public class GCD {
     public static void main(String[] args) {
@@ -359,6 +483,16 @@ public class GCD {
 
 ### 14. LCM (Least Common Multiple)
 
+**Purpose:** Calculates LCM using the relationship: LCM(a,b) × GCD(a,b) = a × b
+
+**Concepts:** Mathematical formulas, reusing functions, relationships between GCD and LCM
+
+**Use Case:** Finding common multiples, scheduling problems, time synchronization.
+
+**Time Complexity:** O(log min(a,b)) | **Space Complexity:** O(log min(a,b))
+
+**Formula:** LCM(a,b) = (a × b) / GCD(a,b)
+
 ```java
 public class LCM {
     public static void main(String[] args) {
@@ -380,6 +514,16 @@ public class LCM {
 ---
 
 ### 15. Power of a Number
+
+**Purpose:** Calculates base raised to exponent using three different methods.
+
+**Concepts:** Loops, recursion, Math.pow(), repeated multiplication
+
+**Use Case:** Exponential calculations, understanding different implementation approaches.
+
+**Time Complexity:** O(n) all methods shown | **Space Complexity:** O(1) iterative, O(n) recursive
+
+**Advanced:** Can be optimized to O(log n) using fast exponentiation (divide and conquer).
 
 ```java
 public class PowerOfNumber {
@@ -414,6 +558,14 @@ public class PowerOfNumber {
 
 ### 16. Sum of Natural Numbers
 
+**Purpose:** Calculates sum of first n natural numbers (1+2+3+...+n) using loop and mathematical formula.
+
+**Concepts:** For loops, mathematical formulas, algorithm vs formula efficiency
+
+**Use Case:** Understanding formula optimization - O(1) vs O(n) approach.
+
+**Formula:** n × (n + 1) / 2 | **Time:** O(1) formula vs O(n) loop
+
 ```java
 public class SumOfNaturalNumbers {
     public static void main(String[] args) {
@@ -439,6 +591,14 @@ public class SumOfNaturalNumbers {
 
 ### 17. Leap Year Check
 
+**Purpose:** Determines if a year is a leap year using the leap year rules.
+
+**Concepts:** Logical operators (&&, ||), modulus operator, compound conditions
+
+**Use Case:** Calendar applications, date validation, understanding complex boolean logic.
+
+**Rules:** Divisible by 4 AND (not divisible by 100 OR divisible by 400)
+
 ```java
 public class LeapYear {
     public static void main(String[] args) {
@@ -459,7 +619,15 @@ public class LeapYear {
 
 ---
 
-### 18. Simple Calculator
+### 18. Simple Calculator ⭐
+
+**Purpose:** Interactive calculator demonstrating user input with Scanner and switch statements.
+
+**Concepts:** Scanner class, user input, switch-case, exception handling (division by zero)
+
+**Use Case:** Understanding user interaction, input validation, switch statements.
+
+**Key Learning:** Scanner usage, input handling, error prevention
 
 ```java
 import java.util.Scanner;
@@ -511,6 +679,12 @@ public class SimpleCalculator {
 
 ### 19. Print Multiplication Table
 
+**Purpose:** Generates and displays multiplication table for any given number.
+
+**Concepts:** For loops, string concatenation, formatted output
+
+**Use Case:** Learning tables, nested loops introduction, basic iteration.
+
 ```java
 public class MultiplicationTable {
     public static void main(String[] args) {
@@ -537,6 +711,14 @@ Multiplication table of 5:
 ---
 
 ### 20. Count Digits in a Number
+
+**Purpose:** Counts total number of digits in an integer using two approaches.
+
+**Concepts:** While loops, String conversion, length() method, logarithms
+
+**Use Case:** Input validation, number analysis, understanding multiple solution approaches.
+
+**Time Complexity:** O(log n) loop, O(1) String method | **Space Complexity:** O(1)
 
 ```java
 public class CountDigits {
@@ -565,7 +747,15 @@ public class CountDigits {
 
 ## Pattern Programs
 
+**Section Overview:** Pattern programs help understand nested loops, loop control, and output formatting. Essential for beginners to master loop logic.
+
 ### 21. Right Triangle Star Pattern
+
+**Purpose:** Creates a right-angled triangle pattern using nested loops.
+
+**Concepts:** Nested for loops, pattern printing, loop iteration control
+
+**Use Case:** Understanding nested loops, basic pattern logic.
 
 ```java
 public class RightTriangle {
@@ -1092,7 +1282,15 @@ public class CrossPattern {
 
 ## Number Programs
 
+**Section Overview:** Special number programs demonstrate mathematical concepts and number theory. Important for understanding algorithms and problem-solving patterns.
+
 ### 36. Perfect Number
+
+**Purpose:** Checks if a number equals sum of its proper divisors (e.g., 28 = 1+2+4+7+14).
+
+**Concepts:** Divisors, loops, perfect numbers in number theory
+
+**Use Case:** Mathematical puzzles, number classification.
 
 ```java
 public class PerfectNumber {
@@ -1530,7 +1728,17 @@ public class RandomNumbers {
 
 ## Array Programs
 
-### 51. Find Largest Element in Array
+**Section Overview:** Array manipulation is crucial for coding interviews. These programs cover searching, sorting, manipulation, and algorithmic techniques. Master these for technical interviews at any company.
+
+### 51. Find Largest Element in Array ⭐
+
+**Purpose:** Finds the maximum element in an array using iteration and Java 8 streams.
+
+**Concepts:** Array traversal, comparison logic, Stream API, max() method
+
+**Use Case:** Data analysis, finding extremes, understanding streams.
+
+**Time Complexity:** O(n) | **Space Complexity:** O(1)
 
 ```java
 public class LargestInArray {
@@ -1871,7 +2079,19 @@ public class ElementFrequency {
 
 ---
 
-### 63. Find Pair with Given Sum
+### 63. Find Pair with Given Sum 🔥⭐ (Two Sum Problem)
+
+**Purpose:** Classic "Two Sum" problem - finds two numbers that add up to a target sum.
+
+**Concepts:** HashMap/HashSet for O(1) lookup, complement pattern, space-time tradeoff
+
+**Use Case:** One of the most asked interview questions (Amazon, Google, Microsoft, etc.)
+
+**Time Complexity:** O(n) | **Space Complexity:** O(n)
+
+**Interview Tip:** Brute force is O(n²) with two loops. Optimized solution uses HashSet!
+
+**Related:** See #64 for finding ALL pairs
 
 ```java
 import java.util.*;
@@ -2016,7 +2236,19 @@ public class LeadersInArray {
 
 ---
 
-### 68. Kadane's Algorithm (Maximum Subarray Sum)
+### 68. Kadane's Algorithm (Maximum Subarray Sum) 🔥⭐
+
+**Purpose:** Finds maximum sum of contiguous subarray - classic dynamic programming problem.
+
+**Concepts:** Dynamic programming, greedy algorithm, optimal substructure
+
+**Use Case:** Stock profit maximization, finding best time period, FAANG favorite question.
+
+**Time Complexity:** O(n) | **Space Complexity:** O(1)
+
+**Interview Tip:** One of the most elegant DP solutions. Can extend to find actual subarray indices.
+
+**Key Insight:** At each position, decide whether to extend current subarray or start fresh.
 
 ```java
 public class KadanesAlgorithm {
@@ -2105,7 +2337,19 @@ public class EquilibriumPoint {
 
 ## String Programs
 
-### 71. Reverse a String
+**Section Overview:** String manipulation is one of the most tested topics in interviews. These programs cover reversals, palindromes, pattern matching, and algorithms. Extremely important for all companies.
+
+### 71. Reverse a String ⭐
+
+**Purpose:** Reverses a string using three different approaches.
+
+**Concepts:** StringBuilder, loops, char arrays, built-in methods
+
+**Use Case:** One of the most frequently asked basic questions in interviews.
+
+**Time Complexity:** O(n) all methods | **Space Complexity:** O(n)
+
+**Interview Tip:** Know all three methods - StringBuilder is most efficient in practice.
 
 ```java
 public class ReverseString {
@@ -2142,7 +2386,17 @@ public class ReverseString {
 
 ---
 
-### 72. Check Palindrome String
+### 72. Check Palindrome String ⭐
+
+**Purpose:** Checks if a string reads same forward and backward.
+
+**Concepts:** String comparison, two-pointer technique, StringBuilder.reverse()
+
+**Use Case:** Very common interview question, pattern recognition.
+
+**Time Complexity:** O(n) | **Space Complexity:** O(1) for two-pointer, O(n) for StringBuilder
+
+**Interview Tip:** Two-pointer approach is space-efficient. Ask about case sensitivity!
 
 ```java
 public class PalindromeString {
@@ -2721,7 +2975,19 @@ public class StringPermutations {
 
 ## Sorting & Searching
 
-### 91. Bubble Sort
+**Section Overview:** Sorting and searching algorithms are fundamental to computer science and heavily tested in interviews. Must know at least one O(n log n) sorting algorithm and binary search.
+
+### 91. Bubble Sort 💡
+
+**Purpose:** Simple sorting algorithm that repeatedly swaps adjacent elements if they're in wrong order.
+
+**Concepts:** Nested loops, swapping, in-place sorting, comparison-based sorting
+
+**Use Case:** Teaching sorting concepts, small datasets. Not used in production (too slow).
+
+**Time Complexity:** O(n²) worst/average, O(n) best (optimized) | **Space Complexity:** O(1)
+
+**Interview Tip:** Know this for conceptual questions, but suggest better algorithms for practical use.
 
 ```java
 public class BubbleSort {
@@ -2804,7 +3070,19 @@ public class InsertionSort {
 
 ---
 
-### 94. Merge Sort
+### 94. Merge Sort 🔥⭐
+
+**Purpose:** Divide-and-conquer sorting algorithm - stable, guaranteed O(n log n) performance.
+
+**Concepts:** Divide and conquer, recursion, merging sorted arrays, stable sorting
+
+**Use Case:** Large datasets, when stability matters, linked list sorting, external sorting.
+
+**Time Complexity:** O(n log n) all cases | **Space Complexity:** O(n)
+
+**Interview Tip:** Go-to algorithm when guaranteed performance needed. Explain divide-conquer-combine steps.
+
+**Advantages:** Stable, predictable performance, works well with linked lists
 
 ```java
 public class MergeSort {
@@ -2856,7 +3134,19 @@ public class MergeSort {
 
 ---
 
-### 95. Quick Sort
+### 95. Quick Sort 🔥⭐
+
+**Purpose:** Fast, in-place sorting using pivot-based partitioning.
+
+**Concepts:** Divide and conquer, partitioning, pivot selection, in-place sorting
+
+**Use Case:** Most commonly used sorting in practice (Java's Arrays.sort uses variant of this).
+
+**Time Complexity:** O(n log n) average, O(n²) worst | **Space Complexity:** O(log n) recursive stack
+
+**Interview Tip:** Explain pivot strategy. Mention randomized quick sort to avoid worst case.
+
+**Advantages:** In-place (low memory), cache-friendly, fast in practice
 
 ```java
 public class QuickSort {
@@ -2902,7 +3192,19 @@ public class QuickSort {
 
 ---
 
-### 96. Binary Search
+### 96. Binary Search 🔥⭐
+
+**Purpose:** Efficiently searches for element in sorted array by repeatedly dividing search space in half.
+
+**Concepts:** Divide and conquer, sorted data, logarithmic time, mid-point calculation
+
+**Use Case:** Searching in sorted data, database indexing, required knowledge for all interviews.
+
+**Time Complexity:** O(log n) | **Space Complexity:** O(1) iterative, O(log n) recursive
+
+**Interview Tip:** MUST-KNOW algorithm. Array must be sorted! Avoid `(left + right) / 2` (overflow risk).
+
+**Key Formula:** `mid = left + (right - left) / 2` prevents integer overflow
 
 ```java
 public class BinarySearch {
@@ -3056,7 +3358,15 @@ public class FindMedian {
 
 ## OOP Programs
 
-### 101. Simple Class and Object
+**Section Overview:** Object-Oriented Programming is fundamental to Java. These programs demonstrate encapsulation, inheritance, polymorphism, and abstraction - the four pillars of OOP. Critical for understanding Java's design philosophy.
+
+### 101. Simple Class and Object 💡
+
+**Purpose:** Demonstrates basic class creation, object instantiation, and method calling.
+
+**Concepts:** Classes, objects, instance variables, methods, encapsulation basics
+
+**Use Case:** Foundation of OOP, understanding object creation and usage.
 
 ```java
 class Student {
@@ -3455,7 +3765,17 @@ Singleton instance
 
 ## Collections Programs
 
-### 111. ArrayList Operations
+**Section Overview:** Java Collections Framework is essential for data storage and manipulation. These programs cover ArrayList, HashMap, HashSet, TreeMap, and utility methods. Must-know for any Java developer.
+
+### 111. ArrayList Operations ⭐
+
+**Purpose:** Demonstrates common ArrayList operations - add, get, set, remove, iterate.
+
+**Concepts:** ArrayList, dynamic arrays, generics, iteration
+
+**Use Case:** Most commonly used collection, resizable arrays, understanding List interface.
+
+**Key Learning:** ArrayList vs Array differences, when to use each.
 
 ```java
 import java.util.*;
@@ -3987,7 +4307,17 @@ public class ListIntersection {
 
 ## Java 8+ Features
 
-### 126. Lambda Expression Example
+**Section Overview:** Java 8 introduced functional programming features that revolutionized Java. Lambdas, streams, and functional interfaces are now standard in modern Java code. Essential for writing concise, readable code.
+
+### 126. Lambda Expression Example 🔥💡
+
+**Purpose:** Demonstrates lambda expressions - anonymous functions for functional interfaces.
+
+**Concepts:** Functional programming, lambda syntax, functional interfaces, code conciseness
+
+**Use Case:** Replacing verbose anonymous classes, modern Java coding style, streams.
+
+**Key Learning:** Lambdas make code cleaner and more maintainable.
 
 ```java
 import java.util.*;
@@ -4337,7 +4667,15 @@ Even and > 5: [6, 8, 10]
 
 ## Multithreading Programs
 
-### 136. Create Thread using Runnable
+**Section Overview:** Concurrency and multithreading are advanced topics critical for building scalable applications. These programs cover thread creation, synchronization, and concurrent utilities. Important for senior positions and backend roles.
+
+### 136. Create Thread using Runnable 💡
+
+**Purpose:** Shows how to create and run threads using the Runnable interface.
+
+**Concepts:** Threads, Runnable interface, Thread class, concurrency basics
+
+**Use Case:** Parallel processing, async operations, understanding multithreading.
 
 ```java
 class MyRunnable implements Runnable {
@@ -4686,7 +5024,17 @@ public class CompletableFutureExample {
 
 ## Advanced Programs
 
-### 146. File Read and Write
+**Section Overview:** Advanced topics including file I/O, serialization, enums, generics, and reflection. These demonstrate Java's powerful features for real-world applications.
+
+### 146. File Read and Write 💡
+
+**Purpose:** Demonstrates reading from and writing to files using try-with-resources.
+
+**Concepts:** File I/O, try-with-resources, AutoCloseable, exception handling
+
+**Use Case:** Data persistence, file operations, understanding resource management.
+
+**Key Learning:** Always use try-with-resources to prevent resource leaks.
 
 ```java
 import java.io.*;
@@ -4944,9 +5292,1377 @@ Message: Modified
 
 ---
 
+## Exception Handling Programs
+
+**Section Overview:** Exception handling is crucial for writing robust, production-ready code. These programs demonstrate try-catch-finally, custom exceptions, and error management. Essential for defensive programming.
+
+### 151. Try-Catch-Finally Example 💡
+
+**Purpose:** Demonstrates exception handling flow with try-catch-finally blocks.
+
+**Concepts:** Exception handling, try-catch-finally, ArrayIndexOutOfBoundsException, error recovery
+
+**Use Case:** Robust error handling, understanding exception flow, ensuring cleanup code runs.
+
+**Key Learning:** Finally block ALWAYS executes - perfect for resource cleanup.
+
+```java
+public class TryCatchFinallyExample {
+    public static void main(String[] args) {
+        try {
+            int[] arr = {1, 2, 3};
+            System.out.println("Accessing element: " + arr[5]);  // ArrayIndexOutOfBoundsException
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Error: Array index out of bounds");
+            System.out.println("Message: " + e.getMessage());
+        } finally {
+            System.out.println("Finally block always executes");
+        }
+
+        System.out.println("Program continues...");
+    }
+}
+```
+
+**Output:**
+
+```
+Error: Array index out of bounds
+Message: Index 5 out of bounds for length 3
+Finally block always executes
+Program continues...
+```
+
+---
+
+### 152. Multiple Catch Blocks
+
+```java
+public class MultipleCatchExample {
+    public static void main(String[] args) {
+        try {
+            String str = null;
+            System.out.println(str.length());  // NullPointerException
+
+            int result = 10 / 0;  // ArithmeticException
+
+            int[] arr = new int[5];
+            arr[10] = 50;  // ArrayIndexOutOfBoundsException
+
+        } catch (NullPointerException e) {
+            System.out.println("Null Pointer Exception: " + e.getMessage());
+        } catch (ArithmeticException e) {
+            System.out.println("Arithmetic Exception: Cannot divide by zero");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Array Index Exception: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("General Exception: " + e.getMessage());
+        }
+    }
+}
+```
+
+**Output:** `Null Pointer Exception: null`
+
+---
+
+### 153. Custom Exception
+
+```java
+// Custom exception class
+class InsufficientBalanceException extends Exception {
+    private double amount;
+
+    public InsufficientBalanceException(double amount) {
+        super("Insufficient balance: " + amount);
+        this.amount = amount;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+}
+
+class BankAccount {
+    private double balance;
+
+    public BankAccount(double balance) {
+        this.balance = balance;
+    }
+
+    public void withdraw(double amount) throws InsufficientBalanceException {
+        if (amount > balance) {
+            throw new InsufficientBalanceException(balance);
+        }
+        balance -= amount;
+        System.out.println("Withdrawal successful. Remaining balance: $" + balance);
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+}
+
+public class CustomExceptionExample {
+    public static void main(String[] args) {
+        BankAccount account = new BankAccount(1000);
+
+        try {
+            account.withdraw(500);   // Success
+            account.withdraw(700);   // Throws InsufficientBalanceException
+        } catch (InsufficientBalanceException e) {
+            System.out.println("Error: " + e.getMessage());
+            System.out.println("Available balance: $" + e.getAmount());
+        }
+    }
+}
+```
+
+**Output:**
+
+```
+Withdrawal successful. Remaining balance: $500.0
+Error: Insufficient balance: 500.0
+Available balance: $500.0
+```
+
+---
+
+### 154. Try-with-Resources
+
+```java
+import java.io.*;
+
+public class TryWithResourcesExample {
+    public static void main(String[] args) {
+        // Automatic resource management
+        try (BufferedReader reader = new BufferedReader(new FileReader("test.txt"));
+             BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt"))) {
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                writer.write(line.toUpperCase());
+                writer.newLine();
+            }
+
+            System.out.println("File processing completed");
+
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("IO Error: " + e.getMessage());
+        }
+        // Resources automatically closed, even if exception occurs
+    }
+}
+```
+
+---
+
+### 155. Throw vs Throws Example
+
+```java
+public class ThrowThrowsExample {
+
+    // Method that declares it might throw exception
+    public static void checkAge(int age) throws IllegalArgumentException {
+        if (age < 18) {
+            throw new IllegalArgumentException("Age must be 18 or above");
+        }
+        System.out.println("Age is valid: " + age);
+    }
+
+    // Method with checked exception
+    public static void readFile(String filename) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(filename));
+        System.out.println(reader.readLine());
+        reader.close();
+    }
+
+    public static void main(String[] args) {
+        // Example 1: throw (unchecked exception)
+        try {
+            checkAge(15);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        // Example 2: throws (checked exception must be handled)
+        try {
+            readFile("data.txt");
+        } catch (IOException e) {
+            System.out.println("File error: " + e.getMessage());
+        }
+    }
+}
+```
+
+**Output:** `Error: Age must be 18 or above`
+
+**Key Differences:**
+
+- `throw`: Used to explicitly throw an exception
+- `throws`: Declares that a method might throw exceptions
+- `throw` is followed by an instance, `throws` is followed by class names
+- `throw` is inside method body, `throws` is in method signature
+
+---
+
+## Regular Expressions
+
+**Section Overview:** Regular expressions (regex) are powerful for pattern matching and text validation. Essential for input validation, data extraction, and text processing in real applications.
+
+### 156. Basic Pattern Matching 💡
+
+**Purpose:** Demonstrates regex pattern matching for email and phone validation.
+
+**Concepts:** Pattern, Matcher, regex syntax, pattern compilation
+
+**Use Case:** Form validation, data extraction from text, search and replace operations.
+
+**Key Learning:** Compile patterns once, reuse for performance.
+
+```java
+import java.util.regex.*;
+
+public class BasicRegexExample {
+    public static void main(String[] args) {
+        String text = "My email is john@example.com and phone is 123-456-7890";
+
+        // Email pattern
+        Pattern emailPattern = Pattern.compile("\\w+@\\w+\\.\\w+");
+        Matcher emailMatcher = emailPattern.matcher(text);
+
+        if (emailMatcher.find()) {
+            System.out.println("Email found: " + emailMatcher.group());
+        }
+
+        // Phone pattern
+        Pattern phonePattern = Pattern.compile("\\d{3}-\\d{3}-\\d{4}");
+        Matcher phoneMatcher = phonePattern.matcher(text);
+
+        if (phoneMatcher.find()) {
+            System.out.println("Phone found: " + phoneMatcher.group());
+        }
+
+        // Using matches() - must match entire string
+        String password = "Pass123!";
+        boolean isValidPassword = password.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$!]).{8,}$");
+        System.out.println("Password valid: " + isValidPassword);
+    }
+}
+```
+
+**Output:**
+
+```
+Email found: john@example.com
+Phone found: 123-456-7890
+Password valid: false
+```
+
+---
+
+### 157. Find All Matches
+
+```java
+import java.util.regex.*;
+
+public class FindAllMatchesExample {
+    public static void main(String[] args) {
+        String text = "The price is $10.50 and discount is $2.25, total $8.25";
+
+        // Find all prices
+        Pattern pattern = Pattern.compile("\\$\\d+\\.\\d{2}");
+        Matcher matcher = pattern.matcher(text);
+
+        System.out.println("All prices found:");
+        while (matcher.find()) {
+            System.out.println(matcher.group() + " at index " + matcher.start());
+        }
+
+        // Extract all words
+        String sentence = "Java is awesome!";
+        Pattern wordPattern = Pattern.compile("\\b\\w+\\b");
+        Matcher wordMatcher = wordPattern.matcher(sentence);
+
+        System.out.println("\nWords found:");
+        while (wordMatcher.find()) {
+            System.out.println(wordMatcher.group());
+        }
+    }
+}
+```
+
+**Output:**
+
+```
+All prices found:
+$10.50 at index 13
+$2.25 at index 37
+$8.25 at index 50
+
+Words found:
+Java
+is
+awesome
+```
+
+---
+
+### 158. String Replace with Regex
+
+```java
+public class RegexReplaceExample {
+    public static void main(String[] args) {
+        String text = "Phone: 123-456-7890, SSN: 123-45-6789";
+
+        // Replace all digits with X
+        String masked = text.replaceAll("\\d", "X");
+        System.out.println("Masked: " + masked);
+
+        // Replace phone numbers
+        String phoneHidden = text.replaceAll("\\d{3}-\\d{3}-\\d{4}", "XXX-XXX-XXXX");
+        System.out.println("Phone hidden: " + phoneHidden);
+
+        // Remove all non-alphanumeric characters
+        String cleaned = "Hello, World! 123".replaceAll("[^a-zA-Z0-9]", "");
+        System.out.println("Cleaned: " + cleaned);
+
+        // Replace multiple spaces with single space
+        String text2 = "Java    is     awesome";
+        String normalized = text2.replaceAll("\\s+", " ");
+        System.out.println("Normalized: " + normalized);
+    }
+}
+```
+
+**Output:**
+
+```
+Masked: Phone: XXX-XXX-XXXX, SSN: XXX-XX-XXXX
+Phone hidden: Phone: XXX-XXX-XXXX, SSN: 123-45-6789
+Cleaned: HelloWorld123
+Normalized: Java is awesome
+```
+
+---
+
+### 159. Validate Input Formats
+
+```java
+public class InputValidationExample {
+    public static void main(String[] args) {
+        // Email validation
+        String[] emails = {"test@example.com", "invalid.email", "user@domain.co.in"};
+        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+
+        System.out.println("Email Validation:");
+        for (String email : emails) {
+            System.out.println(email + " -> " + email.matches(emailRegex));
+        }
+
+        // Phone validation (US format)
+        String[] phones = {"123-456-7890", "1234567890", "123-45-6789"};
+        String phoneRegex = "^\\d{3}-\\d{3}-\\d{4}$";
+
+        System.out.println("\nPhone Validation:");
+        for (String phone : phones) {
+            System.out.println(phone + " -> " + phone.matches(phoneRegex));
+        }
+
+        // URL validation
+        String[] urls = {"https://www.example.com", "http://test.com", "not-a-url"};
+        String urlRegex = "^(https?://)?(www\\.)?[a-zA-Z0-9-]+(\\.[a-zA-Z]{2,})+(/.*)?$";
+
+        System.out.println("\nURL Validation:");
+        for (String url : urls) {
+            System.out.println(url + " -> " + url.matches(urlRegex));
+        }
+    }
+}
+```
+
+**Output:**
+
+```
+Email Validation:
+test@example.com -> true
+invalid.email -> false
+user@domain.co.in -> true
+
+Phone Validation:
+123-456-7890 -> true
+1234567890 -> false
+123-45-6789 -> false
+
+URL Validation:
+https://www.example.com -> true
+http://test.com -> true
+not-a-url -> false
+```
+
+---
+
+### 160. Split String with Regex
+
+```java
+public class RegexSplitExample {
+    public static void main(String[] args) {
+        // Split by multiple delimiters
+        String text = "Java,Python;JavaScript|Ruby";
+        String[] languages = text.split("[,;|]");
+
+        System.out.println("Languages:");
+        for (String lang : languages) {
+            System.out.println("- " + lang);
+        }
+
+        // Split by whitespace
+        String sentence = "This  is   a    test";
+        String[] words = sentence.split("\\s+");
+        System.out.println("\nWords: " + Arrays.toString(words));
+
+        // Split with limit
+        String data = "1,2,3,4,5,6";
+        String[] parts = data.split(",", 3);  // Split into max 3 parts
+        System.out.println("Limited split: " + Arrays.toString(parts));
+
+        // Split on uppercase letters
+        String camelCase = "thisIsACamelCaseString";
+        String[] camelWords = camelCase.split("(?=[A-Z])");
+        System.out.println("Camel case split: " + Arrays.toString(camelWords));
+    }
+}
+```
+
+**Output:**
+
+```
+Languages:
+- Java
+- Python
+- JavaScript
+- Ruby
+
+Words: [This, is, a, test]
+Limited split: [1, 2, 3,4,5,6]
+Camel case split: [this, Is, A, Camel, Case, String]
+```
+
+**Common Regex Patterns:**
+
+```
+\\d        - Digit [0-9]
+\\D        - Non-digit
+\\w        - Word character [a-zA-Z0-9_]
+\\W        - Non-word character
+\\s        - Whitespace
+\\S        - Non-whitespace
+.          - Any character
+^          - Start of string
+$          - End of string
+*          - 0 or more
++          - 1 or more
+?          - 0 or 1
+{n}        - Exactly n times
+{n,}       - n or more times
+{n,m}      - Between n and m times
+[abc]      - Any of a, b, or c
+[^abc]     - Not a, b, or c
+(a|b)      - a or b
+```
+
+---
+
+## Date and Time API
+
+**Section Overview:** Java 8 introduced the modern java.time package (replacing old Date/Calendar). These classes are immutable, thread-safe, and much easier to use. Essential for any application dealing with dates and times.
+
+### 161. LocalDate Examples 💡
+
+**Purpose:** Demonstrates LocalDate for date operations without time zones.
+
+**Concepts:** java.time package, LocalDate, date arithmetic, parsing, formatting
+
+**Use Case:** Date calculations, age computation, date comparisons.
+
+**Key Learning:** LocalDate is immutable and thread-safe (unlike old Date class).
+
+```java
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+
+public class LocalDateExample {
+    public static void main(String[] args) {
+        // Current date
+        LocalDate today = LocalDate.now();
+        System.out.println("Today: " + today);
+
+        // Specific date
+        LocalDate birthday = LocalDate.of(1990, 5, 15);
+        System.out.println("Birthday: " + birthday);
+
+        // Parse from string
+        LocalDate date = LocalDate.parse("2024-12-25");
+        System.out.println("Christmas: " + date);
+
+        // Date arithmetic
+        LocalDate tomorrow = today.plusDays(1);
+        LocalDate nextWeek = today.plusWeeks(1);
+        LocalDate nextMonth = today.plusMonths(1);
+        LocalDate nextYear = today.plusYears(1);
+
+        System.out.println("Tomorrow: " + tomorrow);
+        System.out.println("Next week: " + nextWeek);
+
+        // Date comparison
+        System.out.println("Is today before Christmas? " + today.isBefore(date));
+        System.out.println("Is today after birthday? " + today.isAfter(birthday));
+
+        // Days between dates
+        long daysBetween = ChronoUnit.DAYS.between(today, date);
+        System.out.println("Days until Christmas: " + daysBetween);
+
+        // Get components
+        System.out.println("Year: " + today.getYear());
+        System.out.println("Month: " + today.getMonth());
+        System.out.println("Day: " + today.getDayOfMonth());
+        System.out.println("Day of week: " + today.getDayOfWeek());
+    }
+}
+```
+
+---
+
+### 162. LocalTime Examples
+
+```java
+import java.time.*;
+
+public class LocalTimeExample {
+    public static void main(String[] args) {
+        // Current time
+        LocalTime now = LocalTime.now();
+        System.out.println("Current time: " + now);
+
+        // Specific time
+        LocalTime lunchTime = LocalTime.of(12, 30);
+        System.out.println("Lunch time: " + lunchTime);
+
+        // Parse time
+        LocalTime time = LocalTime.parse("14:30:00");
+        System.out.println("Parsed time: " + time);
+
+        // Time arithmetic
+        LocalTime later = now.plusHours(2);
+        LocalTime earlier = now.minusMinutes(30);
+
+        System.out.println("2 hours later: " + later);
+        System.out.println("30 minutes earlier: " + earlier);
+
+        // Time comparison
+        System.out.println("Is now before lunch? " + now.isBefore(lunchTime));
+
+        // Get components
+        System.out.println("Hour: " + now.getHour());
+        System.out.println("Minute: " + now.getMinute());
+        System.out.println("Second: " + now.getSecond());
+    }
+}
+```
+
+---
+
+### 163. LocalDateTime Examples
+
+```java
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+
+public class LocalDateTimeExample {
+    public static void main(String[] args) {
+        // Current date and time
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println("Now: " + now);
+
+        // Specific date and time
+        LocalDateTime meeting = LocalDateTime.of(2024, 12, 25, 14, 30, 0);
+        System.out.println("Meeting: " + meeting);
+
+        // Formatting
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String formatted = now.format(formatter);
+        System.out.println("Formatted: " + formatted);
+
+        // Parsing
+        String dateTimeStr = "25-12-2024 15:30:00";
+        LocalDateTime parsed = LocalDateTime.parse(dateTimeStr, formatter);
+        System.out.println("Parsed: " + parsed);
+
+        // Common patterns
+        DateTimeFormatter pattern1 = DateTimeFormatter.ofPattern("MMM dd, yyyy hh:mm a");
+        System.out.println("Pattern 1: " + now.format(pattern1));
+
+        DateTimeFormatter pattern2 = DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy");
+        System.out.println("Pattern 2: " + now.format(pattern2));
+    }
+}
+```
+
+---
+
+### 164. Period and Duration
+
+```java
+import java.time.*;
+import java.time.temporal.ChronoUnit;
+
+public class PeriodDurationExample {
+    public static void main(String[] args) {
+        // Period: Date-based amount of time (years, months, days)
+        LocalDate start = LocalDate.of(2020, 1, 1);
+        LocalDate end = LocalDate.of(2024, 6, 15);
+
+        Period period = Period.between(start, end);
+        System.out.println("Period: " + period.getYears() + " years, " +
+                         period.getMonths() + " months, " +
+                         period.getDays() + " days");
+
+        // Duration: Time-based amount of time (hours, minutes, seconds)
+        LocalTime startTime = LocalTime.of(9, 0);
+        LocalTime endTime = LocalTime.of(17, 30);
+
+        Duration duration = Duration.between(startTime, endTime);
+        System.out.println("Duration: " + duration.toHours() + " hours, " +
+                         duration.toMinutesPart() + " minutes");
+
+        // Calculate age
+        LocalDate birthDate = LocalDate.of(1990, 5, 15);
+        LocalDate currentDate = LocalDate.now();
+        int age = Period.between(birthDate, currentDate).getYears();
+        System.out.println("Age: " + age + " years");
+
+        // Days between
+        long daysBetween = ChronoUnit.DAYS.between(start, end);
+        System.out.println("Total days: " + daysBetween);
+    }
+}
+```
+
+**Output:**
+
+```
+Period: 4 years, 5 months, 14 days
+Duration: 8 hours, 30 minutes
+Age: 34 years
+Total days: 1627
+```
+
+---
+
+### 165. ZonedDateTime and Time Zones
+
+```java
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+
+public class ZonedDateTimeExample {
+    public static void main(String[] args) {
+        // Current time in different zones
+        ZonedDateTime nowInNY = ZonedDateTime.now(ZoneId.of("America/New_York"));
+        ZonedDateTime nowInLondon = ZonedDateTime.now(ZoneId.of("Europe/London"));
+        ZonedDateTime nowInTokyo = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z");
+
+        System.out.println("New York: " + nowInNY.format(formatter));
+        System.out.println("London: " + nowInLondon.format(formatter));
+        System.out.println("Tokyo: " + nowInTokyo.format(formatter));
+
+        // Convert between time zones
+        ZonedDateTime istTime = ZonedDateTime.now(ZoneId.of("Asia/Kolkata"));
+        ZonedDateTime estTime = istTime.withZoneSameInstant(ZoneId.of("America/New_York"));
+
+        System.out.println("\nIST: " + istTime.format(formatter));
+        System.out.println("EST: " + estTime.format(formatter));
+
+        // Available zone IDs
+        System.out.println("\nSome time zones:");
+        ZoneId.getAvailableZoneIds().stream()
+              .filter(z -> z.startsWith("America/") || z.startsWith("Asia/"))
+              .sorted()
+              .limit(5)
+              .forEach(System.out::println);
+    }
+}
+```
+
+---
+
+## Design Patterns
+
+**Section Overview:** Design patterns are proven solutions to common software design problems. These patterns improve code reusability, maintainability, and scalability. Critical knowledge for senior developers and system design interviews.
+
+### 166. Factory Pattern 🔥💡
+
+**Purpose:** Creational pattern that provides an interface for creating objects without specifying exact class.
+
+**Concepts:** Factory method, creational patterns, object creation abstraction, polymorphism
+
+**Use Case:** When exact type of object isn't known until runtime, dependency injection, plugin systems.
+
+**Key Benefits:** Loose coupling, easier to extend, encapsulates object creation.
+
+**Interview Tip:** One of the most commonly used patterns. Know when to use over direct instantiation.
+
+```java
+// Product interface
+interface Vehicle {
+    void create();
+}
+
+// Concrete products
+class Car implements Vehicle {
+    @Override
+    public void create() {
+        System.out.println("Car created");
+    }
+}
+
+class Bike implements Vehicle {
+    @Override
+    public void create() {
+        System.out.println("Bike created");
+    }
+}
+
+class Truck implements Vehicle {
+    @Override
+    public void create() {
+        System.out.println("Truck created");
+    }
+}
+
+// Factory class
+class VehicleFactory {
+    public static Vehicle getVehicle(String type) {
+        if (type == null) {
+            return null;
+        }
+        switch (type.toLowerCase()) {
+            case "car":
+                return new Car();
+            case "bike":
+                return new Bike();
+            case "truck":
+                return new Truck();
+            default:
+                throw new IllegalArgumentException("Unknown vehicle type: " + type);
+        }
+    }
+}
+
+public class FactoryPatternExample {
+    public static void main(String[] args) {
+        Vehicle car = VehicleFactory.getVehicle("car");
+        car.create();
+
+        Vehicle bike = VehicleFactory.getVehicle("bike");
+        bike.create();
+
+        Vehicle truck = VehicleFactory.getVehicle("truck");
+        truck.create();
+    }
+}
+```
+
+**Output:**
+
+```
+Car created
+Bike created
+Truck created
+```
+
+---
+
+### 167. Builder Pattern
+
+```java
+class Computer {
+    // Required parameters
+    private String CPU;
+    private String RAM;
+
+    // Optional parameters
+    private String storage;
+    private String GPU;
+    private boolean isBluetoothEnabled;
+    private boolean isWifiEnabled;
+
+    private Computer(ComputerBuilder builder) {
+        this.CPU = builder.CPU;
+        this.RAM = builder.RAM;
+        this.storage = builder.storage;
+        this.GPU = builder.GPU;
+        this.isBluetoothEnabled = builder.isBluetoothEnabled;
+        this.isWifiEnabled = builder.isWifiEnabled;
+    }
+
+    @Override
+    public String toString() {
+        return "Computer{CPU='" + CPU + "', RAM='" + RAM +
+               "', Storage='" + storage + "', GPU='" + GPU +
+               "', Bluetooth=" + isBluetoothEnabled +
+               ", Wifi=" + isWifiEnabled + "}";
+    }
+
+    // Builder class
+    public static class ComputerBuilder {
+        // Required parameters
+        private String CPU;
+        private String RAM;
+
+        // Optional parameters
+        private String storage = "256GB";
+        private String GPU = "Integrated";
+        private boolean isBluetoothEnabled = false;
+        private boolean isWifiEnabled = false;
+
+        public ComputerBuilder(String CPU, String RAM) {
+            this.CPU = CPU;
+            this.RAM = RAM;
+        }
+
+        public ComputerBuilder setStorage(String storage) {
+            this.storage = storage;
+            return this;
+        }
+
+        public ComputerBuilder setGPU(String GPU) {
+            this.GPU = GPU;
+            return this;
+        }
+
+        public ComputerBuilder setBluetoothEnabled(boolean isBluetoothEnabled) {
+            this.isBluetoothEnabled = isBluetoothEnabled;
+            return this;
+        }
+
+        public ComputerBuilder setWifiEnabled(boolean isWifiEnabled) {
+            this.isWifiEnabled = isWifiEnabled;
+            return this;
+        }
+
+        public Computer build() {
+            return new Computer(this);
+        }
+    }
+}
+
+public class BuilderPatternExample {
+    public static void main(String[] args) {
+        Computer basicComputer = new Computer.ComputerBuilder("Intel i5", "8GB")
+                                            .build();
+        System.out.println("Basic: " + basicComputer);
+
+        Computer gamingComputer = new Computer.ComputerBuilder("Intel i9", "32GB")
+                                             .setStorage("1TB SSD")
+                                             .setGPU("RTX 3080")
+                                             .setBluetoothEnabled(true)
+                                             .setWifiEnabled(true)
+                                             .build();
+        System.out.println("Gaming: " + gamingComputer);
+    }
+}
+```
+
+**Output:**
+
+```
+Basic: Computer{CPU='Intel i5', RAM='8GB', Storage='256GB', GPU='Integrated', Bluetooth=false, Wifi=false}
+Gaming: Computer{CPU='Intel i9', RAM='32GB', Storage='1TB SSD', GPU='RTX 3080', Bluetooth=true, Wifi=true}
+```
+
+---
+
+### 168. Observer Pattern
+
+```java
+import java.util.*;
+
+// Observer interface
+interface Observer {
+    void update(String message);
+}
+
+// Subject interface
+interface Subject {
+    void attach(Observer observer);
+    void detach(Observer observer);
+    void notifyObservers();
+}
+
+// Concrete subject
+class NewsAgency implements Subject {
+    private List<Observer> observers = new ArrayList<>();
+    private String news;
+
+    @Override
+    public void attach(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void detach(Observer observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (Observer observer : observers) {
+            observer.update(news);
+        }
+    }
+
+    public void setNews(String news) {
+        this.news = news;
+        notifyObservers();
+    }
+}
+
+// Concrete observers
+class EmailSubscriber implements Observer {
+    private String name;
+
+    public EmailSubscriber(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void update(String message) {
+        System.out.println(name + " received email: " + message);
+    }
+}
+
+class SMSSubscriber implements Observer {
+    private String name;
+
+    public SMSSubscriber(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void update(String message) {
+        System.out.println(name + " received SMS: " + message);
+    }
+}
+
+public class ObserverPatternExample {
+    public static void main(String[] args) {
+        NewsAgency agency = new NewsAgency();
+
+        Observer emailSub1 = new EmailSubscriber("John");
+        Observer emailSub2 = new EmailSubscriber("Alice");
+        Observer smsSub1 = new SMSSubscriber("Bob");
+
+        agency.attach(emailSub1);
+        agency.attach(emailSub2);
+        agency.attach(smsSub1);
+
+        agency.setNews("Breaking News: Java 21 Released!");
+
+        System.out.println("\nBob unsubscribed...\n");
+        agency.detach(smsSub1);
+
+        agency.setNews("Update: New features announced!");
+    }
+}
+```
+
+**Output:**
+
+```
+John received email: Breaking News: Java 21 Released!
+Alice received email: Breaking News: Java 21 Released!
+Bob received SMS: Breaking News: Java 21 Released!
+
+Bob unsubscribed...
+
+John received email: Update: New features announced!
+Alice received email: Update: New features announced!
+```
+
+---
+
+### 169. Strategy Pattern
+
+```java
+// Strategy interface
+interface PaymentStrategy {
+    void pay(int amount);
+}
+
+// Concrete strategies
+class CreditCardStrategy implements PaymentStrategy {
+    private String cardNumber;
+    private String name;
+
+    public CreditCardStrategy(String cardNumber, String name) {
+        this.cardNumber = cardNumber;
+        this.name = name;
+    }
+
+    @Override
+    public void pay(int amount) {
+        System.out.println("Paid $" + amount + " using Credit Card ending in " +
+                         cardNumber.substring(cardNumber.length() - 4));
+    }
+}
+
+class PayPalStrategy implements PaymentStrategy {
+    private String email;
+
+    public PayPalStrategy(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public void pay(int amount) {
+        System.out.println("Paid $" + amount + " using PayPal account: " + email);
+    }
+}
+
+class CryptoStrategy implements PaymentStrategy {
+    private String walletAddress;
+
+    public CryptoStrategy(String walletAddress) {
+        this.walletAddress = walletAddress;
+    }
+
+    @Override
+    public void pay(int amount) {
+        System.out.println("Paid $" + amount + " using Crypto wallet: " + walletAddress);
+    }
+}
+
+// Context
+class ShoppingCart {
+    private PaymentStrategy paymentStrategy;
+
+    public void setPaymentStrategy(PaymentStrategy paymentStrategy) {
+        this.paymentStrategy = paymentStrategy;
+    }
+
+    public void checkout(int amount) {
+        if (paymentStrategy == null) {
+            System.out.println("Please select a payment method");
+            return;
+        }
+        paymentStrategy.pay(amount);
+    }
+}
+
+public class StrategyPatternExample {
+    public static void main(String[] args) {
+        ShoppingCart cart = new ShoppingCart();
+
+        // Pay with credit card
+        cart.setPaymentStrategy(new CreditCardStrategy("1234567890123456", "John Doe"));
+        cart.checkout(100);
+
+        // Pay with PayPal
+        cart.setPaymentStrategy(new PayPalStrategy("john@example.com"));
+        cart.checkout(50);
+
+        // Pay with Crypto
+        cart.setPaymentStrategy(new CryptoStrategy("0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb"));
+        cart.checkout(75);
+    }
+}
+```
+
+**Output:**
+
+```
+Paid $100 using Credit Card ending in 3456
+Paid $50 using PayPal account: john@example.com
+Paid $75 using Crypto wallet: 0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb
+```
+
+---
+
+### 170. Adapter Pattern
+
+```java
+// Target interface
+interface MediaPlayer {
+    void play(String audioType, String fileName);
+}
+
+// Adaptee interface
+interface AdvancedMediaPlayer {
+    void playVlc(String fileName);
+    void playMp4(String fileName);
+}
+
+// Concrete Adaptee classes
+class VlcPlayer implements AdvancedMediaPlayer {
+    @Override
+    public void playVlc(String fileName) {
+        System.out.println("Playing VLC file: " + fileName);
+    }
+
+    @Override
+    public void playMp4(String fileName) {
+        // Do nothing
+    }
+}
+
+class Mp4Player implements AdvancedMediaPlayer {
+    @Override
+    public void playVlc(String fileName) {
+        // Do nothing
+    }
+
+    @Override
+    public void playMp4(String fileName) {
+        System.out.println("Playing MP4 file: " + fileName);
+    }
+}
+
+// Adapter class
+class MediaAdapter implements MediaPlayer {
+    AdvancedMediaPlayer advancedPlayer;
+
+    public MediaAdapter(String audioType) {
+        if (audioType.equalsIgnoreCase("vlc")) {
+            advancedPlayer = new VlcPlayer();
+        } else if (audioType.equalsIgnoreCase("mp4")) {
+            advancedPlayer = new Mp4Player();
+        }
+    }
+
+    @Override
+    public void play(String audioType, String fileName) {
+        if (audioType.equalsIgnoreCase("vlc")) {
+            advancedPlayer.playVlc(fileName);
+        } else if (audioType.equalsIgnoreCase("mp4")) {
+            advancedPlayer.playMp4(fileName);
+        }
+    }
+}
+
+// Client class
+class AudioPlayer implements MediaPlayer {
+    MediaAdapter mediaAdapter;
+
+    @Override
+    public void play(String audioType, String fileName) {
+        // Built-in support for mp3
+        if (audioType.equalsIgnoreCase("mp3")) {
+            System.out.println("Playing MP3 file: " + fileName);
+        }
+        // Use adapter for other formats
+        else if (audioType.equalsIgnoreCase("vlc") || audioType.equalsIgnoreCase("mp4")) {
+            mediaAdapter = new MediaAdapter(audioType);
+            mediaAdapter.play(audioType, fileName);
+        } else {
+            System.out.println("Invalid media type: " + audioType);
+        }
+    }
+}
+
+public class AdapterPatternExample {
+    public static void main(String[] args) {
+        AudioPlayer audioPlayer = new AudioPlayer();
+
+        audioPlayer.play("mp3", "song.mp3");
+        audioPlayer.play("mp4", "video.mp4");
+        audioPlayer.play("vlc", "movie.vlc");
+        audioPlayer.play("avi", "clip.avi");
+    }
+}
+```
+
+**Output:**
+
+```
+Playing MP3 file: song.mp3
+Playing MP4 file: video.mp4
+Playing VLC file: movie.vlc
+Invalid media type: avi
+```
+
+---
+
+## Quick Reference Tables
+
+### String Methods Quick Reference
+
+| Method                                         | Description                    | Example                            | Result            |
+| ---------------------------------------------- | ------------------------------ | ---------------------------------- | ----------------- |
+| `length()`                                     | Returns string length          | `"Java".length()`                  | `4`               |
+| `charAt(int index)`                            | Character at index             | `"Java".charAt(1)`                 | `'a'`             |
+| `substring(int start)`                         | Substring from start           | `"Java".substring(2)`              | `"va"`            |
+| `substring(int start, int end)`                | Substring in range             | `"Java".substring(1, 3)`           | `"av"`            |
+| `toLowerCase()`                                | Convert to lowercase           | `"Java".toLowerCase()`             | `"java"`          |
+| `toUpperCase()`                                | Convert to uppercase           | `"Java".toUpperCase()`             | `"JAVA"`          |
+| `trim()`                                       | Remove leading/trailing spaces | `" Java ".trim()`                  | `"Java"`          |
+| `replace(char old, char new)`                  | Replace characters             | `"Java".replace('a', 'o')`         | `"Jovo"`          |
+| `replaceAll(String regex, String replacement)` | Replace with regex             | `"Java".replaceAll("[aeiou]", "")` | `"Jv"`            |
+| `split(String regex)`                          | Split into array               | `"a,b,c".split(",")`               | `["a", "b", "c"]` |
+| `contains(CharSequence s)`                     | Check if contains              | `"Java".contains("av")`            | `true`            |
+| `startsWith(String prefix)`                    | Check if starts with           | `"Java".startsWith("Ja")`          | `true`            |
+| `endsWith(String suffix)`                      | Check if ends with             | `"Java".endsWith("va")`            | `true`            |
+| `equals(Object obj)`                           | Compare content                | `"Java".equals("Java")`            | `true`            |
+| `equalsIgnoreCase(String str)`                 | Case-insensitive compare       | `"Java".equalsIgnoreCase("JAVA")`  | `true`            |
+| `indexOf(String str)`                          | First occurrence index         | `"Java".indexOf("a")`              | `1`               |
+| `lastIndexOf(String str)`                      | Last occurrence index          | `"Java".lastIndexOf("a")`          | `3`               |
+| `concat(String str)`                           | Concatenate strings            | `"Java".concat(" 8")`              | `"Java 8"`        |
+| `isEmpty()`                                    | Check if empty                 | `"".isEmpty()`                     | `true`            |
+| `isBlank()`                                    | Check if blank (Java 11+)      | `"   ".isBlank()`                  | `true`            |
+
+### Collection Methods Quick Reference
+
+#### ArrayList Methods
+
+| Method                      | Description             | Time Complexity |
+| --------------------------- | ----------------------- | --------------- |
+| `add(E e)`                  | Add element to end      | O(1) amortized  |
+| `add(int index, E element)` | Insert at index         | O(n)            |
+| `get(int index)`            | Get element at index    | O(1)            |
+| `set(int index, E element)` | Replace element         | O(1)            |
+| `remove(int index)`         | Remove by index         | O(n)            |
+| `remove(Object o)`          | Remove first occurrence | O(n)            |
+| `clear()`                   | Remove all elements     | O(n)            |
+| `size()`                    | Get number of elements  | O(1)            |
+| `isEmpty()`                 | Check if empty          | O(1)            |
+| `contains(Object o)`        | Check if contains       | O(n)            |
+| `indexOf(Object o)`         | First index of element  | O(n)            |
+| `toArray()`                 | Convert to array        | O(n)            |
+
+#### HashMap Methods
+
+| Method                           | Description           | Time Complexity |
+| -------------------------------- | --------------------- | --------------- |
+| `put(K key, V value)`            | Add/update key-value  | O(1) average    |
+| `get(Object key)`                | Get value for key     | O(1) average    |
+| `remove(Object key)`             | Remove key-value pair | O(1) average    |
+| `containsKey(Object key)`        | Check if key exists   | O(1) average    |
+| `containsValue(Object value)`    | Check if value exists | O(n)            |
+| `keySet()`                       | Get all keys          | O(1)            |
+| `values()`                       | Get all values        | O(1)            |
+| `entrySet()`                     | Get key-value pairs   | O(1)            |
+| `size()`                         | Get number of entries | O(1)            |
+| `isEmpty()`                      | Check if empty        | O(1)            |
+| `clear()`                        | Remove all entries    | O(n)            |
+| `getOrDefault(K key, V default)` | Get value or default  | O(1) average    |
+| `putIfAbsent(K key, V value)`    | Put if key absent     | O(1) average    |
+
+#### HashSet Methods
+
+| Method               | Description            | Time Complexity |
+| -------------------- | ---------------------- | --------------- |
+| `add(E e)`           | Add element            | O(1) average    |
+| `remove(Object o)`   | Remove element         | O(1) average    |
+| `contains(Object o)` | Check if contains      | O(1) average    |
+| `size()`             | Get number of elements | O(1)            |
+| `isEmpty()`          | Check if empty         | O(1)            |
+| `clear()`            | Remove all elements    | O(n)            |
+
+### Stream Operations Quick Reference
+
+| Operation                | Type         | Description            | Example                                    |
+| ------------------------ | ------------ | ---------------------- | ------------------------------------------ |
+| `filter(Predicate)`      | Intermediate | Filter elements        | `stream.filter(x -> x > 5)`                |
+| `map(Function)`          | Intermediate | Transform elements     | `stream.map(String::toUpperCase)`          |
+| `flatMap(Function)`      | Intermediate | Flatten nested streams | `stream.flatMap(List::stream)`             |
+| `distinct()`             | Intermediate | Remove duplicates      | `stream.distinct()`                        |
+| `sorted()`               | Intermediate | Sort elements          | `stream.sorted()`                          |
+| `sorted(Comparator)`     | Intermediate | Sort with comparator   | `stream.sorted(Comparator.reverseOrder())` |
+| `limit(long n)`          | Intermediate | Limit to n elements    | `stream.limit(10)`                         |
+| `skip(long n)`           | Intermediate | Skip first n elements  | `stream.skip(5)`                           |
+| `peek(Consumer)`         | Intermediate | Perform action on each | `stream.peek(System.out::println)`         |
+| `collect(Collector)`     | Terminal     | Collect to collection  | `stream.collect(Collectors.toList())`      |
+| `forEach(Consumer)`      | Terminal     | Perform action on each | `stream.forEach(System.out::println)`      |
+| `reduce(BinaryOperator)` | Terminal     | Reduce to single value | `stream.reduce(0, Integer::sum)`           |
+| `count()`                | Terminal     | Count elements         | `stream.count()`                           |
+| `anyMatch(Predicate)`    | Terminal     | Check if any match     | `stream.anyMatch(x -> x > 5)`              |
+| `allMatch(Predicate)`    | Terminal     | Check if all match     | `stream.allMatch(x -> x > 0)`              |
+| `noneMatch(Predicate)`   | Terminal     | Check if none match    | `stream.noneMatch(x -> x < 0)`             |
+| `findFirst()`            | Terminal     | Find first element     | `stream.findFirst()`                       |
+| `findAny()`              | Terminal     | Find any element       | `stream.findAny()`                         |
+| `min(Comparator)`        | Terminal     | Find minimum           | `stream.min(Comparator.naturalOrder())`    |
+| `max(Comparator)`        | Terminal     | Find maximum           | `stream.max(Comparator.naturalOrder())`    |
+
+### Array Methods Quick Reference
+
+| Method                            | Description       | Example                       |
+| --------------------------------- | ----------------- | ----------------------------- |
+| `Arrays.sort(array)`              | Sort array        | `Arrays.sort(arr)`            |
+| `Arrays.binarySearch(array, key)` | Binary search     | `Arrays.binarySearch(arr, 5)` |
+| `Arrays.fill(array, value)`       | Fill with value   | `Arrays.fill(arr, 0)`         |
+| `Arrays.equals(arr1, arr2)`       | Compare arrays    | `Arrays.equals(arr1, arr2)`   |
+| `Arrays.copyOf(array, length)`    | Copy array        | `Arrays.copyOf(arr, 5)`       |
+| `Arrays.asList(array)`            | Convert to List   | `Arrays.asList(arr)`          |
+| `Arrays.toString(array)`          | Convert to String | `Arrays.toString(arr)`        |
+| `Arrays.stream(array)`            | Create stream     | `Arrays.stream(arr)`          |
+
+### Common Time Complexities
+
+| Operation           | ArrayList | LinkedList | HashMap | HashSet | TreeMap  | TreeSet  |
+| ------------------- | --------- | ---------- | ------- | ------- | -------- | -------- |
+| **Get**             | O(1)      | O(n)       | O(1)\*  | N/A     | O(log n) | N/A      |
+| **Add (end)**       | O(1)\*    | O(1)       | O(1)\*  | O(1)\*  | O(log n) | O(log n) |
+| **Add (beginning)** | O(n)      | O(1)       | N/A     | N/A     | N/A      | N/A      |
+| **Add (middle)**    | O(n)      | O(n)       | N/A     | N/A     | N/A      | N/A      |
+| **Remove**          | O(n)      | O(n)       | O(1)\*  | O(1)\*  | O(log n) | O(log n) |
+| **Contains**        | O(n)      | O(n)       | O(1)\*  | O(1)\*  | O(log n) | O(log n) |
+| **Iteration**       | O(n)      | O(n)       | O(n)    | O(n)    | O(n)     | O(n)     |
+
+\*Average case, worst case is O(n) due to hash collisions
+
+### Exception Hierarchy Quick Reference
+
+```
+Throwable
+├── Error (Unchecked - JVM errors)
+│   ├── OutOfMemoryError
+│   ├── StackOverflowError
+│   └── VirtualMachineError
+│
+└── Exception
+    ├── RuntimeException (Unchecked)
+    │   ├── NullPointerException
+    │   ├── ArrayIndexOutOfBoundsException
+    │   ├── ArithmeticException
+    │   ├── IllegalArgumentException
+    │   ├── NumberFormatException
+    │   ├── ClassCastException
+    │   └── IllegalStateException
+    │
+    └── (Checked Exceptions)
+        ├── IOException
+        │   ├── FileNotFoundException
+        │   └── EOFException
+        ├── SQLException
+        ├── ClassNotFoundException
+        └── InterruptedException
+```
+
+**Checked vs Unchecked:**
+
+- **Checked**: Must be caught or declared (compile-time)
+- **Unchecked**: RuntimeException and Error (runtime)
+
+---
+
 ## Summary
 
-This collection covers **150 comprehensive Java programs** organized by topic:
+This collection covers **170 comprehensive Java programs** organized by topic:
 
 **Program Categories:**
 
@@ -4961,15 +6677,23 @@ This collection covers **150 comprehensive Java programs** organized by topic:
 - ✅ **Java 8+ Features (126-135)**: Lambdas, streams, Optional, functional interfaces
 - ✅ **Multithreading (136-145)**: Threads, synchronization, ExecutorService, atomic classes
 - ✅ **Advanced Programs (146-150)**: File I/O, serialization, enums, generics, reflection
+- ✅ **Exception Handling (151-155)**: Try-catch, custom exceptions, try-with-resources
+- ✅ **Regular Expressions (156-160)**: Pattern matching, validation, string manipulation
+- ✅ **Date and Time API (161-165)**: LocalDate, LocalTime, ZonedDateTime, formatting
+- ✅ **Design Patterns (166-170)**: Factory, Builder, Observer, Strategy, Adapter
 
 **Key Features:**
 
 - ✓ Complete, working code for each program
+- ✓ **Purpose & Use Case** for each program
+- ✓ **Concepts** demonstrated clearly explained
+- ✓ **Time/Space Complexity** analysis for algorithms
+- ✓ **Interview Tips** and optimization hints
 - ✓ Multiple approaches where applicable
-- ✓ Expected output for each program
+- ✓ Expected output with examples
 - ✓ Comments explaining logic
 - ✓ Best practices demonstrated
-- ✓ Interview-ready examples
+- ✓ Icons marking importance (⭐ frequently asked, 🔥 FAANG favorites, 💡 key concepts)
 
 **Time Complexity Reference:**
 
@@ -5695,7 +7419,7 @@ Consider:
 ## Quick Lookup by Program Number
 
 ```
-Basics:          1-20
+Basics:           1-20
 Patterns:        21-35
 Numbers:         36-50
 Arrays:          51-70
@@ -5706,6 +7430,10 @@ Collections:    111-125
 Java 8:         126-135
 Threads:        136-145
 Advanced:       146-150
+Exceptions:     151-155
+Regex:          156-160
+Date/Time:      161-165
+Patterns:       166-170
 ```
 
 ---
@@ -5775,4 +7503,373 @@ Try these variations for extra practice:
    - Sudoku solver
    - All subsets
 
-**Note:** This collection focuses on the 150 most essential programs. For advanced topics like trees, graphs, and dynamic programming, additional dedicated practice is recommended.
+**Note:** This collection focuses on the 170 most essential programs. For advanced topics like trees, graphs, and dynamic programming, additional dedicated practice is recommended.
+
+---
+
+## Modern Java Features (Java 14+)
+
+### Records (Java 14+)
+
+Records provide a compact syntax for immutable data classes.
+
+```java
+// Traditional class
+class PersonOld {
+    private final String name;
+    private final int age;
+
+    public PersonOld(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // Getters, equals(), hashCode(), toString()...
+}
+
+// Using Record (much simpler!)
+record Person(String name, int age) { }
+
+public class RecordExample {
+    public static void main(String[] args) {
+        Person person = new Person("John", 30);
+        System.out.println(person.name());  // Automatic getter
+        System.out.println(person);  // Automatic toString()
+
+        Person person2 = new Person("John", 30);
+        System.out.println(person.equals(person2));  // Automatic equals()
+    }
+}
+```
+
+**Output:**
+
+```
+John
+Person[name=John, age=30]
+true
+```
+
+**Record Features:**
+
+- Automatically generates constructor, getters, `equals()`, `hashCode()`, `toString()`
+- Immutable by default (all fields are `final`)
+- Can have custom methods and constructors
+- Cannot extend other classes (implicitly extends `Record`)
+
+---
+
+### Switch Expressions (Java 12+)
+
+Enhanced switch with expression support and arrow syntax.
+
+```java
+public class SwitchExpressionExample {
+    public static void main(String[] args) {
+        // Traditional switch statement
+        String day = "MONDAY";
+        String type;
+        switch (day) {
+            case "MONDAY":
+            case "TUESDAY":
+            case "WEDNESDAY":
+            case "THURSDAY":
+            case "FRIDAY":
+                type = "Weekday";
+                break;
+            case "SATURDAY":
+            case "SUNDAY":
+                type = "Weekend";
+                break;
+            default:
+                type = "Invalid";
+        }
+
+        // New switch expression (Java 12+)
+        String type2 = switch (day) {
+            case "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY" -> "Weekday";
+            case "SATURDAY", "SUNDAY" -> "Weekend";
+            default -> "Invalid";
+        };
+
+        System.out.println(type2);  // Output: Weekday
+
+        // Switch with yield (for complex logic)
+        String message = switch (day) {
+            case "MONDAY", "TUESDAY" -> "Early week";
+            case "WEDNESDAY" -> {
+                String m = "Mid week";
+                yield m.toUpperCase();  // Use yield for block
+            }
+            case "THURSDAY", "FRIDAY" -> "Late week";
+            default -> "Weekend";
+        };
+
+        System.out.println(message);
+    }
+}
+```
+
+**Benefits:**
+
+- More concise and readable
+- No fall-through, no need for `break`
+- Can be used as expression (returns value)
+- Multiple case labels in one line
+- Use `yield` for complex blocks
+
+---
+
+### Text Blocks (Java 13+)
+
+Multi-line strings without concatenation.
+
+```java
+public class TextBlockExample {
+    public static void main(String[] args) {
+        // Traditional way (ugly!)
+        String json = "{\n" +
+                     "  \"name\": \"John\",\n" +
+                     "  \"age\": 30\n" +
+                     "}";
+
+        // Using Text Block (Java 13+)
+        String json2 = """
+                {
+                  "name": "John",
+                  "age": 30
+                }
+                """;
+
+        System.out.println(json2);
+
+        // HTML example
+        String html = """
+                <html>
+                    <body>
+                        <h1>Hello, World!</h1>
+                    </body>
+                </html>
+                """;
+
+        System.out.println(html);
+
+        // SQL example
+        String query = """
+                SELECT id, name, email
+                FROM users
+                WHERE age > 18
+                ORDER BY name
+                """;
+
+        System.out.println(query);
+    }
+}
+```
+
+**Benefits:**
+
+- No need for escape sequences (`\n`, `\"`)
+- Preserves formatting and indentation
+- More readable for multi-line strings
+- Great for JSON, SQL, HTML, etc.
+
+---
+
+### Pattern Matching for instanceof (Java 16+)
+
+Simplifies type checking and casting.
+
+```java
+public class PatternMatchingExample {
+    public static void main(String[] args) {
+        Object obj = "Hello, World!";
+
+        // Traditional way
+        if (obj instanceof String) {
+            String str = (String) obj;  // Explicit cast needed
+            System.out.println(str.toUpperCase());
+        }
+
+        // Pattern matching (Java 16+)
+        if (obj instanceof String str) {  // Automatic cast to str
+            System.out.println(str.toUpperCase());
+        }
+
+        // More examples
+        Object value = 42;
+
+        if (value instanceof Integer num && num > 40) {
+            System.out.println("Large number: " + num);
+        }
+
+        // Works with else
+        if (value instanceof String s) {
+            System.out.println("String length: " + s.length());
+        } else if (value instanceof Integer i) {
+            System.out.println("Integer value: " + i);
+        }
+    }
+}
+```
+
+**Benefits:**
+
+- Eliminates redundant casting
+- More concise and readable
+- Can use pattern variable in same expression
+- Reduces boilerplate code
+
+---
+
+### Sealed Classes (Java 17+)
+
+Restrict which classes can extend or implement.
+
+```java
+// Sealed class - only specific classes can extend
+public sealed class Shape permits Circle, Rectangle, Triangle {
+    abstract double area();
+}
+
+final class Circle extends Shape {
+    private double radius;
+
+    Circle(double radius) {
+        this.radius = radius;
+    }
+
+    @Override
+    double area() {
+        return Math.PI * radius * radius;
+    }
+}
+
+final class Rectangle extends Shape {
+    private double length, width;
+
+    Rectangle(double length, double width) {
+        this.length = length;
+        this.width = width;
+    }
+
+    @Override
+    double area() {
+        return length * width;
+    }
+}
+
+final class Triangle extends Shape {
+    private double base, height;
+
+    Triangle(double base, double height) {
+        this.base = base;
+        this.height = height;
+    }
+
+    @Override
+    double area() {
+        return 0.5 * base * height;
+    }
+}
+
+// This would cause a compilation error:
+// class Square extends Shape { }  // Error: cannot extend sealed class
+
+public class SealedClassExample {
+    public static void main(String[] args) {
+        Shape circle = new Circle(5);
+        Shape rectangle = new Rectangle(4, 6);
+
+        System.out.println("Circle area: " + circle.area());
+        System.out.println("Rectangle area: " + rectangle.area());
+    }
+}
+```
+
+**Benefits:**
+
+- Control class hierarchy
+- Enable exhaustive pattern matching
+- Better domain modeling
+- Improved security and maintainability
+
+**Permitted subclass must be:**
+
+- `final` (cannot be extended further)
+- `sealed` (can specify its own permitted subclasses)
+- `non-sealed` (open for extension)
+
+---
+
+### Scanner Input Examples
+
+Scanner is already demonstrated in **Program #18 (Simple Calculator)**. Here are additional common patterns:
+
+```java
+import java.util.Scanner;
+
+public class ScannerExamples {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Read integer
+        System.out.print("Enter your age: ");
+        int age = scanner.nextInt();
+        System.out.println("You are " + age + " years old");
+
+        // Read double
+        System.out.print("Enter your height (in meters): ");
+        double height = scanner.nextDouble();
+
+        // Clear buffer before reading string
+        scanner.nextLine();  // Important!
+
+        // Read string (word)
+        System.out.print("Enter your first name: ");
+        String firstName = scanner.next();
+
+        // Read full line
+        System.out.print("Enter your full name: ");
+        scanner.nextLine();  // Clear buffer
+        String fullName = scanner.nextLine();
+
+        // Read character
+        System.out.print("Enter grade (A/B/C): ");
+        char grade = scanner.next().charAt(0);
+
+        // Input validation
+        System.out.print("Enter a number: ");
+        if (scanner.hasNextInt()) {
+            int number = scanner.nextInt();
+            System.out.println("Valid number: " + number);
+        } else {
+            System.out.println("Invalid input!");
+            scanner.next();  // Clear invalid input
+        }
+
+        scanner.close();  // Always close scanner
+    }
+}
+```
+
+**Scanner Methods:**
+
+- `next()` - Read next token (word)
+- `nextLine()` - Read entire line
+- `nextInt()` - Read integer
+- `nextDouble()` - Read double
+- `nextBoolean()` - Read boolean
+- `hasNext()` - Check if more input available
+- `hasNextInt()` - Check if next input is integer
+- `close()` - Close scanner
+
+**Common Scanner Pitfalls:**
+
+1. **Buffer Issue**: After `nextInt()`, call `nextLine()` to clear buffer
+2. **InputMismatchException**: Validate input with `hasNextInt()` etc.
+3. **Resource Leak**: Always close Scanner with `scanner.close()`
+
+---
+
+**Note:** This collection focuses on the 170 most essential programs. For advanced topics like trees, graphs, and dynamic programming, additional dedicated practice is recommended.

@@ -7,34 +7,34 @@
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#ffffff",
-  "theme_color": "#7c3aed",
+  "theme_color": "#0969da",
   "icons": [
     {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='15%25' fill='%237c3aed'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='350' fill='white'>📚</text></svg>",
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='15%25' fill='%230969da'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='350' fill='white'>📚</text></svg>",
       "sizes": "512x512",
       "type": "image/svg+xml",
       "purpose": "any maskable"
     },
     {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='15%25' fill='%237c3aed'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='130' fill='white'>📚</text></svg>",
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='15%25' fill='%230969da'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='130' fill='white'>📚</text></svg>",
       "sizes": "192x192",
       "type": "image/svg+xml",
       "purpose": "any maskable"
     },
     {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 144 144'><rect width='144' height='144' rx='15%25' fill='%237c3aed'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='100' fill='white'>📚</text></svg>",
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 144 144'><rect width='144' height='144' rx='15%25' fill='%230969da'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='100' fill='white'>📚</text></svg>",
       "sizes": "144x144",
       "type": "image/svg+xml",
       "purpose": "any maskable"
     },
     {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect width='96' height='96' rx='15%25' fill='%237c3aed'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='65' fill='white'>📚</text></svg>",
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect width='96' height='96' rx='15%25' fill='%230969da'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='65' fill='white'>📚</text></svg>",
       "sizes": "96x96",
       "type": "image/svg+xml",
       "purpose": "any maskable"
     },
     {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 72'><rect width='72' height='72' rx='15%25' fill='%237c3aed'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='50' fill='white'>📚</text></svg>",
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 72'><rect width='72' height='72' rx='15%25' fill='%230969da'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='50' fill='white'>📚</text></svg>",
       "sizes": "72x72",
       "type": "image/svg+xml",
       "purpose": "any maskable"
@@ -50,7 +50,7 @@
       "url": "./#/interview/java/q&a",
       "icons": [
         {
-          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect width='96' height='96' rx='15%25' fill='%237c3aed'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='50' fill='white'>☕</text></svg>",
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect width='96' height='96' rx='15%25' fill='%230969da'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='50' fill='white'>☕</text></svg>",
           "sizes": "96x96",
           "type": "image/svg+xml"
         }
@@ -63,7 +63,7 @@
       "url": "./#/interview/dbms/q&a",
       "icons": [
         {
-          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect width='96' height='96' rx='15%25' fill='%237c3aed'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='50' fill='white'>🗄️</text></svg>",
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect width='96' height='96' rx='15%25' fill='%230969da'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='50' fill='white'>🗄️</text></svg>",
           "sizes": "96x96",
           "type": "image/svg+xml"
         }
@@ -76,7 +76,7 @@
       "url": "./#/interview/springboot/q&a",
       "icons": [
         {
-          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect width='96' height='96' rx='15%25' fill='%237c3aed'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='50' fill='white'>🍃</text></svg>",
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect width='96' height='96' rx='15%25' fill='%230969da'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='50' fill='white'>🍃</text></svg>",
           "sizes": "96x96",
           "type": "image/svg+xml"
         }
