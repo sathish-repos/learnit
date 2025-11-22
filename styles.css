@@ -1,0 +1,1236 @@
+/* === Modern Obsidian Theme === */
+:root {
+    --font-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Helvetica, Arial, sans-serif;
+
+    /* Light Mode Palette - Crisp & Clean */
+    --bg-body: #f8fafc;
+    --bg-content: #ffffff;
+    --bg-sidebar: rgba(255, 255, 255, 0.8);
+    --border-color: #e2e8f0;
+
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-tertiary: #94a3b8;
+
+    --accent-primary: #6366f1;
+    /* Indigo 500 */
+    --accent-hover: #4f46e5;
+    /* Indigo 600 */
+    --accent-subtle: rgba(99, 102, 241, 0.1);
+
+    --code-bg: #f1f5f9;
+    --code-text: #334155;
+
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+    /* Syntax Highlighting - Light */
+    --syntax-keyword: #db2777;
+    --syntax-string: #16a34a;
+    --syntax-comment: #94a3b8;
+    --syntax-function: #7c3aed;
+    --syntax-variable: #ea580c;
+    --syntax-number: #2563eb;
+
+    --color-danger: #ef4444;
+    --color-warning: #f59e0b;
+    --color-success: #10b981;
+}
+
+/* Dark Mode Palette - Deep Slate */
+/* Dark Mode Palette - Midnight Pro */
+body.dark-theme {
+    /* Deepest Slate/Black for background */
+    --bg-body: #020617;
+    /* Rich Slate for content */
+    --bg-content: #0f172a;
+    /* Glassmorphism base */
+    --bg-sidebar: rgba(2, 6, 23, 0.85);
+    /* Subtle borders */
+    --border-color: #1e293b;
+
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-tertiary: #64748b;
+
+    /* Neon Sky Blue Accent */
+    --accent-primary: #38bdf8;
+    --accent-hover: #0ea5e9;
+    --accent-subtle: rgba(56, 189, 248, 0.1);
+    --accent-glow: 0 0 20px rgba(56, 189, 248, 0.25);
+
+    /* Deep Code Background */
+    --code-bg: #0b1120;
+    --code-text: #e2e8f0;
+
+    /* Stronger Shadows for depth */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.5);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5);
+
+    /* Syntax Highlighting - Neon */
+    --syntax-keyword: #f472b6;
+    --syntax-string: #4ade80;
+    --syntax-comment: #475569;
+    --syntax-function: #c084fc;
+    --syntax-variable: #fb923c;
+    --syntax-number: #60a5fa;
+
+    --color-danger: #f87171;
+    --color-warning: #fbbf24;
+    --color-success: #34d399;
+}
+
+/* Global Styles */
+body {
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    letter-spacing: -0.01em;
+}
+
+body.dark-theme {
+    color: var(--text-primary) !important;
+}
+
+body.dark-theme * {
+    color: inherit;
+}
+
+/* Sidebar - Glassmorphism */
+.sidebar {
+    background-color: var(--bg-sidebar);
+    border-right: 1px solid var(--border-color);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: all 0.3s ease;
+}
+
+/* Sidebar Navigation with Color Hierarchy */
+.sidebar-nav>ul>li>a {
+    font-weight: 600;
+    color: var(--accent-primary) !important;
+    font-size: 0.95rem;
+}
+
+.sidebar-nav li a {
+    color: var(--text-primary) !important;
+    transition: all 0.2s ease;
+    border-radius: 6px;
+    padding: 4px 8px;
+    margin: 2px 0;
+}
+
+/* Level 2 - Sub headers */
+.sidebar-nav ul ul li>a {
+    color: var(--text-secondary) !important;
+    font-size: 0.9rem;
+}
+
+/* Level 3 - Sub-sub headers */
+.sidebar-nav ul ul ul li>a {
+    color: var(--text-tertiary) !important;
+    font-size: 0.88rem;
+    padding-left: 16px;
+}
+
+/* Dark theme colors */
+body.dark-theme .sidebar-nav>ul>li>a {
+    color: var(--accent-primary) !important;
+}
+
+body.dark-theme .sidebar-nav ul ul li>a {
+    color: var(--text-secondary) !important;
+}
+
+body.dark-theme .sidebar-nav ul ul ul li>a {
+    color: var(--text-tertiary) !important;
+}
+
+/* Hover state */
+.sidebar-nav li a:hover {
+    color: var(--accent-primary) !important;
+    background-color: var(--accent-subtle);
+    text-decoration: none;
+}
+
+.app-name-link {
+    color: var(--accent-primary) !important;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+/* Content Area */
+.content {
+    background-color: transparent;
+    padding-top: 1rem;
+}
+
+.markdown-section {
+    background-color: var(--bg-content);
+    padding: 3rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    max-width: 900px;
+    margin: 0 auto 4rem auto;
+    color: var(--text-primary);
+}
+
+/* Typography */
+.markdown-section h1,
+.markdown-section h2,
+.markdown-section h3,
+.markdown-section h4 {
+    color: var(--text-primary);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    border-bottom: none;
+}
+
+.markdown-section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-hover));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+.markdown-section h2 {
+    font-size: 1.75rem;
+    margin-top: 2.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--accent-primary);
+}
+
+.markdown-section h3 {
+    color: var(--text-primary);
+}
+
+.markdown-section h4 {
+    color: var(--text-primary);
+}
+
+.markdown-section h5 {
+    color: var(--text-primary);
+}
+
+body.dark-theme .markdown-section h2 {
+    color: var(--accent-primary);
+}
+
+.markdown-section a {
+    color: var(--accent-primary);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s;
+}
+
+.markdown-section a:hover {
+    border-bottom-color: var(--accent-primary);
+}
+
+/* Code Blocks - Premium Theme */
+.markdown-section pre {
+    background-color: var(--code-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+    overflow-x: auto;
+    position: relative;
+}
+
+.markdown-section code {
+    background-color: var(--code-bg);
+    color: var(--code-text);
+    border-radius: 6px;
+    padding: 0.2em 0.4em;
+    font-family: "JetBrains Mono", "Fira Code", "Consolas", monospace;
+    font-size: 0.9em;
+}
+
+.markdown-section pre>code {
+    background-color: transparent;
+    padding: 0;
+    color: var(--code-text);
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+/* Syntax Highlighting - Light Mode */
+.markdown-section pre code .token.comment,
+.markdown-section pre code .token.prolog,
+.markdown-section pre code .token.doctype,
+.markdown-section pre code .token.cdata {
+    color: var(--syntax-comment);
+    font-style: italic;
+}
+
+.markdown-section pre code .token.keyword,
+.markdown-section pre code .token.tag,
+.markdown-section pre code .token.boolean,
+.markdown-section pre code .token.important {
+    color: var(--syntax-keyword);
+    font-weight: 600;
+}
+
+.markdown-section pre code .token.string,
+.markdown-section pre code .token.attr-value {
+    color: var(--syntax-string);
+}
+
+.markdown-section pre code .token.function,
+.markdown-section pre code .token.class-name {
+    color: var(--syntax-function);
+    font-weight: 500;
+}
+
+.markdown-section pre code .token.number,
+.markdown-section pre code .token.constant {
+    color: var(--syntax-number);
+}
+
+.markdown-section pre code .token.variable,
+.markdown-section pre code .token.property {
+    color: var(--syntax-variable);
+}
+
+.markdown-section pre code .token.operator,
+.markdown-section pre code .token.punctuation {
+    color: var(--text-secondary);
+}
+
+.markdown-section pre code .token.annotation,
+.markdown-section pre code .token.decorator {
+    color: #d97706;
+}
+
+/* Dark Mode Syntax Highlighting */
+body.dark-theme .markdown-section pre code .token.comment,
+body.dark-theme .markdown-section pre code .token.prolog,
+body.dark-theme .markdown-section pre code .token.doctype,
+body.dark-theme .markdown-section pre code .token.cdata {
+    color: var(--syntax-comment);
+    font-style: italic;
+}
+
+body.dark-theme .markdown-section pre code .token.keyword,
+body.dark-theme .markdown-section pre code .token.tag,
+body.dark-theme .markdown-section pre code .token.boolean,
+body.dark-theme .markdown-section pre code .token.important {
+    color: var(--syntax-keyword);
+    font-weight: 600;
+}
+
+body.dark-theme .markdown-section pre code .token.string,
+body.dark-theme .markdown-section pre code .token.attr-value {
+    color: var(--syntax-string);
+}
+
+body.dark-theme .markdown-section pre code .token.function,
+body.dark-theme .markdown-section pre code .token.class-name {
+    color: var(--syntax-function);
+    font-weight: 500;
+}
+
+body.dark-theme .markdown-section pre code .token.number,
+body.dark-theme .markdown-section pre code .token.constant {
+    color: var(--syntax-number);
+}
+
+body.dark-theme .markdown-section pre code .token.variable,
+body.dark-theme .markdown-section pre code .token.property {
+    color: var(--syntax-variable);
+}
+
+body.dark-theme .markdown-section pre code .token.operator,
+body.dark-theme .markdown-section pre code .token.punctuation {
+    color: #94a3b8;
+}
+
+body.dark-theme .markdown-section pre code .token.annotation,
+body.dark-theme .markdown-section pre code .token.decorator {
+    color: #fbbf24;
+}
+
+/* Blockquotes */
+.markdown-section blockquote {
+    border-left: 4px solid var(--accent-primary);
+    background-color: var(--accent-subtle);
+    color: var(--text-secondary);
+    border-radius: 0 8px 8px 0;
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+}
+
+/* Tables - Modern Theme */
+.table-wrapper {
+    overflow-x: auto;
+    width: 100%;
+    margin: 2rem 0;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+    background: var(--bg-content);
+}
+
+.markdown-section table {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: none;
+    margin: 0;
+}
+
+.markdown-section table th {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-hover));
+    color: white;
+    font-weight: 600;
+    padding: 14px 18px;
+    border-bottom: 2px solid var(--accent-primary);
+    text-align: left;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+}
+
+.markdown-section table td {
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+.markdown-section table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Striped rows */
+.markdown-section table tbody tr:nth-child(even) {
+    background-color: var(--bg-body);
+}
+
+.markdown-section table tbody tr:nth-child(odd) {
+    background-color: var(--bg-content);
+}
+
+.markdown-section table tbody tr:hover {
+    background-color: var(--accent-subtle) !important;
+    transform: scale(1.001);
+    transition: all 0.2s ease;
+}
+
+/* Dark theme table adjustments */
+body.dark-theme .markdown-section table th {
+    background: linear-gradient(135deg, #4f46e5, #6366f1);
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+}
+
+body.dark-theme .markdown-section table tbody tr:nth-child(even) {
+    background-color: rgba(15, 23, 42, 0.5);
+}
+
+/* Search Box */
+.search input {
+    background-color: var(--bg-body);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    padding: 10px 16px;
+    transition: all 0.2s;
+    box-shadow: var(--shadow-sm);
+}
+
+.search input:focus {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px var(--accent-subtle);
+    outline: none;
+}
+
+/* Search Results */
+.search .results-panel {
+    background: var(--bg-content);
+    border: 1px solid var(--border-color);
+}
+
+.search .results-panel p,
+.search .results-panel em {
+    color: var(--text-primary) !important;
+}
+
+body.dark-theme .search .results-panel p,
+body.dark-theme .search .results-panel em {
+    color: var(--text-primary) !important;
+}
+
+/* Pagination */
+.docsify-pagination-container {
+    margin-top: 4rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 2rem;
+}
+
+.pagination-item a {
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 12px 20px;
+    transition: all 0.2s;
+    background-color: var(--bg-content);
+}
+
+.pagination-item a:hover {
+    border-color: var(--accent-primary);
+    background-color: var(--bg-body);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Dark Theme Button Hover Effects */
+body.dark-theme .theme-toggle:hover,
+body.dark-theme .scroll-to-top:hover {
+    box-shadow: var(--accent-glow);
+    border-color: var(--accent-primary);
+}
+
+/* Override any #34495e from Vue theme */
+.sidebar-toggle,
+.sidebar-toggle-button {
+    background-color: transparent !important;
+    color: var(--text-primary) !important;
+}
+
+body.dark-theme .sidebar-toggle,
+body.dark-theme .sidebar-toggle-button {
+    color: var(--text-primary) !important;
+}
+
+/* Pagination buttons - GitHub style instead of #34495e */
+.pagination-item a {
+    color: var(--accent-primary) !important;
+}
+
+.pagination-item a:hover {
+    background-color: var(--code-bg) !important;
+    color: var(--accent-primary) !important;
+}
+
+body.dark-theme .pagination-item a:hover {
+    background-color: var(--code-bg) !important;
+}
+
+/* Cover page if used */
+.cover h1,
+.cover h2 {
+    color: var(--text-primary) !important;
+}
+
+body.dark-theme .cover h1,
+body.dark-theme .cover h2 {
+    color: var(--text-primary) !important;
+}
+
+/* Anchor links */
+.anchor span {
+    color: var(--accent-primary) !important;
+}
+
+
+
+body.dark-theme .keyboard-shortcuts {
+    background: var(--code-bg);
+    border-color: var(--border-color);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4),
+        0 0 0 1px var(--border-color);
+}
+
+/* === UI Elements === */
+
+/* Theme Toggle Button */
+.theme-toggle {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--bg-content);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+    z-index: 999;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.theme-toggle:hover {
+    background: var(--bg-body);
+    transform: translateY(-2px);
+    color: var(--accent-primary);
+    box-shadow: 0 12px 20px -3px rgb(0 0 0 / 0.15);
+}
+
+/* Scroll to Top Button */
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--accent-primary);
+    color: white;
+    border: none;
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+    z-index: 999;
+    font-size: 24px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.scroll-to-top:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 20px -3px rgb(0 0 0 / 0.15);
+}
+
+.scroll-to-top.show {
+    display: flex;
+}
+
+/* Reading Progress Bar */
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: var(--accent-primary);
+    z-index: 9999;
+    transition: width 0.2s ease;
+}
+
+/* Loading Animation */
+#app {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#app:empty::before {
+    content: "";
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--border-color);
+    border-top: 3px solid var(--accent-primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Keyboard Shortcuts Indicator */
+.keyboard-shortcuts {
+    position: fixed;
+    bottom: 150px;
+    right: 20px;
+    background: var(--bg-content);
+    color: var(--text-primary);
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 12px;
+    display: none;
+    z-index: 998;
+    max-width: 220px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+}
+
+.keyboard-shortcuts.show {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.keyboard-shortcuts kbd {
+    background: var(--code-bg);
+    color: var(--code-text);
+    padding: 3px 7px;
+    border-radius: 6px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 11px;
+    border: 1px solid var(--border-color);
+    box-shadow: inset 0 -1px 0 var(--border-color);
+}
+
+/* Offline Indicator */
+.offline-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--color-warning);
+    color: var(--bg-body);
+    padding: 8px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 9998;
+    display: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.offline-indicator.show {
+    display: block;
+}
+
+body.dark-theme .offline-indicator {
+    background: var(--color-warning);
+    color: var(--code-bg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 768px) {
+
+    /* Reduce base font size */
+    body {
+        font-size: 13px;
+    }
+
+    .content {
+        left: 0;
+        padding: 0 0.5rem;
+    }
+
+    .markdown-section {
+        padding: 0.5rem;
+        font-size: 0.85rem;
+        max-width: 100%;
+    }
+
+    /* Smaller headings on mobile */
+    .markdown-section h1 {
+        font-size: 1.5rem;
+        margin-top: 1.5rem;
+    }
+
+    .markdown-section h2 {
+        font-size: 1.25rem;
+        margin-top: 1.5rem;
+        padding-bottom: 0.3rem;
+    }
+
+    .markdown-section h3 {
+        font-size: 1.1rem;
+    }
+
+    .markdown-section h4 {
+        font-size: 1rem;
+    }
+
+    .markdown-section h5 {
+        font-size: 0.9rem;
+    }
+
+    /* Smaller code blocks */
+    .markdown-section code {
+        font-size: 0.8em;
+        padding: 0.15em 0.3em;
+    }
+
+    .markdown-section pre {
+        padding: 1rem;
+    }
+
+    .markdown-section pre>code {
+        font-size: 0.75rem;
+        line-height: 1.5;
+    }
+
+    /* Smaller table text */
+    .markdown-section table th,
+    .markdown-section table td {
+        font-size: 0.8rem;
+        padding: 8px 10px;
+    }
+
+    /* Reduce blockquote padding */
+    .markdown-section blockquote {
+        padding: 0.75rem 1rem;
+        margin: 1rem 0;
+    }
+
+    /* Smaller list spacing */
+    .markdown-section li {
+        margin: 0.15em 0;
+    }
+
+    .theme-toggle,
+    .scroll-to-top {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+        right: 15px;
+    }
+
+    .theme-toggle {
+        bottom: 75px;
+    }
+
+    .scroll-to-top {
+        bottom: 15px;
+    }
+
+    .keyboard-shortcuts {
+        display: none !important;
+    }
+}
+
+/* Print Styles */
+@media print {
+
+    .sidebar,
+    .theme-toggle,
+    .scroll-to-top,
+    .progress-bar,
+    .keyboard-shortcuts,
+    .docsify-pagination-container {
+        display: none !important;
+    }
+
+    .content {
+        left: 0 !important;
+        max-width: 100% !important;
+    }
+
+    .markdown-section {
+        max-width: 100% !important;
+        padding: 0 !important;
+    }
+
+    .markdown-section pre>code {
+        white-space: pre-wrap !important;
+        word-wrap: break-word !important;
+    }
+
+    body.dark-theme {
+        background-color: white !important;
+        color: black !important;
+    }
+
+    body.dark-theme .markdown-section {
+        color: black !important;
+    }
+
+    body.dark-theme .markdown-section h1,
+    body.dark-theme .markdown-section h2,
+    body.dark-theme .markdown-section h3 {
+        color: black !important;
+    }
+
+    a {
+        color: var(--accent-primary) !important;
+    }
+}
+
+/* Lists */
+.markdown-section ul,
+.markdown-section ol {
+    padding-left: 2em;
+}
+
+.markdown-section li {
+    margin: 0.25em 0;
+    color: var(--text-primary);
+}
+
+.markdown-section li strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Task Lists */
+.markdown-section input[type="checkbox"] {
+    margin-right: 0.5em;
+}
+
+/* Alerts/Callouts */
+.markdown-section .tip,
+.markdown-section .warn,
+.markdown-section .danger {
+    padding: 12px 16px;
+    border-left: 4px solid;
+    border-radius: 6px;
+    margin: 16px 0;
+}
+
+.markdown-section .tip {
+    background-color: rgba(26, 127, 55, 0.1);
+    border-left-color: var(--color-success);
+}
+
+.markdown-section .warn {
+    background-color: rgba(154, 103, 0, 0.1);
+    border-left-color: var(--color-warning);
+}
+
+.markdown-section .danger {
+    background-color: rgba(209, 36, 47, 0.1);
+    border-left-color: var(--color-danger);
+}
+
+body.dark-theme .markdown-section .tip {
+    background-color: rgba(63, 185, 80, 0.15);
+}
+
+body.dark-theme .markdown-section .warn {
+    background-color: rgba(210, 153, 34, 0.15);
+}
+
+body.dark-theme .markdown-section .danger {
+    background-color: rgba(248, 81, 73, 0.15);
+}
+
+/* Smooth scrolling for all browsers */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+    background-color: #0969da;
+    background-color: rgba(9, 105, 218, 0.25);
+}
+
+::-moz-selection {
+    background-color: #0969da;
+    background-color: rgba(9, 105, 218, 0.25);
+}
+
+body.dark-theme ::selection {
+    background-color: rgba(47, 129, 247, 0.25);
+}
+
+body.dark-theme ::-moz-selection {
+    background-color: rgba(47, 129, 247, 0.25);
+}
+
+
+
+/* === UX/UI Enhancements === */
+
+/* Smooth Page Transitions */
+.markdown-section {
+    animation: fadeSlideIn 0.4s ease-out;
+}
+
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Custom Scrollbar - Auto-hide */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+}
+
+body:hover ::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-tertiary);
+}
+
+/* Firefox scrollbar auto-hide */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+}
+
+*:hover {
+    scrollbar-color: var(--border-color) transparent;
+}
+
+/* Search Bar Enhancements */
+.search {
+    margin-bottom: 2rem;
+}
+
+.search input {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+body.dark-theme .search input {
+    background-color: rgba(15, 23, 42, 0.6);
+}
+
+/* Docsify Copy Code Plugin Overrides */
+.docsify-copy-code-button {
+    background: var(--bg-content) !important;
+    color: var(--text-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 6px !important;
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+    transition: all 0.2s ease !important;
+    top: 10px !important;
+    right: 10px !important;
+}
+
+.docsify-copy-code-button:hover {
+    background: var(--accent-subtle) !important;
+    color: var(--accent-primary) !important;
+    border-color: var(--accent-primary) !important;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+/* PWA Install Banner */
+.pwa-install-banner {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-content);
+    color: var(--text-primary);
+    padding: 20px 24px;
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+    z-index: 1000;
+    max-width: 500px;
+    width: 90%;
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    animation: slideUp 0.3s ease-out;
+}
+
+.pwa-install-banner.show {
+    display: flex;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.pwa-install-content {
+    flex: 1;
+    margin-right: 16px;
+}
+
+.pwa-install-content h4 {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.pwa-install-content p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.pwa-install-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.pwa-install-buttons button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    font-family: var(--font-primary);
+}
+
+.pwa-install-buttons .install-btn {
+    background: var(--accent-primary);
+    color: white;
+}
+
+.pwa-install-buttons .install-btn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.pwa-install-buttons .dismiss-btn {
+    background: var(--bg-body);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+}
+
+.pwa-install-buttons .dismiss-btn:hover {
+    background: var(--accent-subtle);
+    color: var(--accent-primary);
+    border-color: var(--accent-primary);
+}
+
+body.dark-theme .pwa-install-banner {
+    background: var(--bg-content);
+    border-color: var(--border-color);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* PWA Update Toast */
+.pwa-update-toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--bg-content);
+    color: var(--text-primary);
+    padding: 16px 20px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    gap: 16px;
+    max-width: 400px;
+    animation: slideIn 0.3s ease-out;
+}
+
+.pwa-update-toast.show {
+    display: flex;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.pwa-update-toast span {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.pwa-update-toast button {
+    padding: 8px 16px;
+    background: var(--accent-primary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: var(--font-primary);
+}
+
+.pwa-update-toast button:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+body.dark-theme .pwa-update-toast {
+    background: var(--bg-content);
+    border-color: var(--border-color);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Mobile adjustments for PWA banner */
+@media screen and (max-width: 768px) {
+    .pwa-install-banner {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .pwa-install-content {
+        margin-right: 0;
+    }
+
+    .pwa-install-buttons {
+        width: 100%;
+        justify-content: stretch;
+    }
+
+    .pwa-install-buttons button {
+        flex: 1;
+    }
+
+    .pwa-update-toast {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        max-width: none;
+    }
+}
