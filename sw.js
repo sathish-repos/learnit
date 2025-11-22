@@ -1,16 +1,20 @@
 // Service Worker for Interview Notes PWA
-const CACHE_NAME = "interview-notes-v3";
-const RUNTIME_CACHE = "interview-notes-runtime-v3";
+const CACHE_NAME = "interview-notes-v5";
+const RUNTIME_CACHE = "interview-notes-runtime-v5";
 
 // Files to cache immediately on install
 const PRECACHE_URLS = [
   "./",
   "./index.html",
+  "./offline.md",
   "./README.md",
   "./_sidebar.md",
   "./about.md",
   "./FEATURES.md",
   "./manifest.json",
+  "./assets/apple-touch-icon.png",
+  "./assets/favicon-32x32.png",
+  "./assets/favicon-16x16.png",
   // CDN resources
   "https://cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css",
   "https://cdn.jsdelivr.net/npm/docsify@4",
@@ -89,7 +93,15 @@ self.addEventListener("fetch", (event) => {
         })
         .catch(() => {
           // If network fails, try cache
-          return caches.match(request);
+          return caches.match(request).then((response) => {
+            if (response) {
+              return response;
+            }
+            // If not in cache and it's a markdown file, show offline page
+            if (url.pathname.endsWith(".md")) {
+              return caches.match("./offline.md");
+            }
+          });
         })
     );
     return;
