@@ -781,8 +781,64 @@
       border-bottom: 1px solid var(--border-color);
     }
 
-    /* Mobile Responsive Adjustments */
+    /* Mobile Responsive */
     @media screen and (max-width: 768px) {
+
+      /* Reduce base font size */
+      body {
+        font-size: 14px;
+      }
+
+      .sidebar {
+        width: 280px;
+      }
+
+      .content {
+        left: 0;
+        padding: 0 1rem;
+      }
+
+      .markdown-section {
+        padding: 1.5rem;
+        font-size: 0.9rem;
+      }
+
+      /* Smaller headings on mobile */
+      .markdown-section h1 {
+        font-size: 1.75rem;
+      }
+
+      .markdown-section h2 {
+        font-size: 1.4rem;
+      }
+
+      .markdown-section h3 {
+        font-size: 1.2rem;
+      }
+
+      .markdown-section h4 {
+        font-size: 1.05rem;
+      }
+
+      .markdown-section h5 {
+        font-size: 0.95rem;
+      }
+
+      /* Smaller code blocks */
+      .markdown-section code {
+        font-size: 0.85em;
+      }
+
+      .markdown-section pre>code {
+        font-size: 0.8rem;
+      }
+
+      /* Smaller table text */
+      .markdown-section table th,
+      .markdown-section table td {
+        font-size: 0.85rem;
+        padding: 10px 12px;
+      }
 
       .theme-toggle,
       .scroll-to-top {
@@ -802,15 +858,6 @@
 
       .keyboard-shortcuts {
         display: none !important;
-      }
-
-      .markdown-section {
-        font-size: 15px;
-        padding: 2rem 1rem;
-      }
-
-      .markdown-section pre>code {
-        font-size: 0.85em;
       }
     }
 
