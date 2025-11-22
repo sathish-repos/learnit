@@ -786,7 +786,7 @@
 
       /* Reduce base font size */
       body {
-        font-size: 14px;
+        font-size: 13px;
       }
 
       .sidebar {
@@ -795,49 +795,69 @@
 
       .content {
         left: 0;
-        padding: 0 1rem;
+        padding: 0 0.75rem;
       }
 
       .markdown-section {
-        padding: 1.5rem;
-        font-size: 0.9rem;
+        padding: 1rem;
+        font-size: 0.85rem;
       }
 
       /* Smaller headings on mobile */
       .markdown-section h1 {
-        font-size: 1.75rem;
+        font-size: 1.5rem;
+        margin-top: 1.5rem;
       }
 
       .markdown-section h2 {
-        font-size: 1.4rem;
+        font-size: 1.25rem;
+        margin-top: 1.5rem;
+        padding-bottom: 0.3rem;
       }
 
       .markdown-section h3 {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
       }
 
       .markdown-section h4 {
-        font-size: 1.05rem;
+        font-size: 1rem;
       }
 
       .markdown-section h5 {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
       }
 
       /* Smaller code blocks */
       .markdown-section code {
-        font-size: 0.85em;
+        font-size: 0.8em;
+        padding: 0.15em 0.3em;
+      }
+
+      .markdown-section pre {
+        padding: 1rem;
       }
 
       .markdown-section pre>code {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
+        line-height: 1.5;
       }
 
       /* Smaller table text */
       .markdown-section table th,
       .markdown-section table td {
-        font-size: 0.85rem;
-        padding: 10px 12px;
+        font-size: 0.8rem;
+        padding: 8px 10px;
+      }
+
+      /* Reduce blockquote padding */
+      .markdown-section blockquote {
+        padding: 0.75rem 1rem;
+        margin: 1rem 0;
+      }
+
+      /* Smaller list spacing */
+      .markdown-section li {
+        margin: 0.15em 0;
       }
 
       .theme-toggle,
@@ -1331,7 +1351,7 @@
 
   <script>
     window.$docsify = {
-      name: "Interview Notes",
+      name: "Learn It 🔥",
       repo: "https://github.com/sathish-repos/learnit/", // Add your GitHub repo URL here if you want a GitHub corner
       loadSidebar: true,
       subMaxLevel: 3,
