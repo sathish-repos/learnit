@@ -34,11 +34,13 @@ Use the **search bar** above to quickly find specific topics, keywords, or conce
 
 ## 🚀 Quick Links
 
-- [Java Q&A](interview/java/q&a.md)
-- [Java Programs](interview/java/programs.md)
-- [DBMS Q&A](interview/dbms/q&a.md)
-- [DBMS Commands](interview/dbms/commands.md)
-- [Spring Boot Q&A](interview/springboot/q&a.md)
+- [☕ Java Interview Questions](interview/java/q&a.md)
+- [💻 Java Programming Examples](interview/java/programs.md)
+- [🗄️ DBMS Interview Questions](interview/dbms/q&a.md)
+- [💾 DBMS SQL Commands](interview/dbms/commands.md)
+- [🍃 Spring Boot Interview Questions](interview/springboot/q&a.md)
+- [💡 General Interview Tips](#💡-tips-for-interview-success)
+- [✨ Site Features Overview](#✨-site-features)
 
 ---
 

@@ -183,30 +183,34 @@
       margin: 2px 0;
     }
 
-    /* Level 2 - Sub headers */
+    /* Level 2 - Sub headers - Brighter for better readability */
     .sidebar-nav ul ul li>a {
-      color: var(--text-secondary) !important;
+      color: var(--text-primary) !important;
       font-size: 0.9rem;
+      opacity: 0.85;
     }
 
-    /* Level 3 - Sub-sub headers */
+    /* Level 3 - Sub-sub headers - Brighter for better readability */
     .sidebar-nav ul ul ul li>a {
-      color: var(--text-tertiary) !important;
+      color: var(--text-primary) !important;
       font-size: 0.88rem;
       padding-left: 16px;
+      opacity: 0.75;
     }
 
-    /* Dark theme colors */
+    /* Dark theme colors - Much brighter */
     body.dark-theme .sidebar-nav>ul>li>a {
       color: var(--accent-primary) !important;
     }
 
     body.dark-theme .sidebar-nav ul ul li>a {
-      color: var(--text-secondary) !important;
+      color: #e2e8f0 !important;
+      opacity: 0.95;
     }
 
     body.dark-theme .sidebar-nav ul ul ul li>a {
-      color: var(--text-tertiary) !important;
+      color: #cbd5e1 !important;
+      opacity: 0.85;
     }
 
     /* Hover state */
@@ -214,6 +218,7 @@
       color: var(--accent-primary) !important;
       background-color: var(--accent-subtle);
       text-decoration: none;
+      opacity: 1 !important;
     }
 
     .app-name-link {

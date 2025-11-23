@@ -1,10 +1,18 @@
 <!-- _sidebar.md -->
 
-* [Home](/)
+* [← Back to Home](/)
 
 ---
 
-* **Interview Topics**
+* **DBMS**
+  * [Q&A](interview/dbms/q&a.md)
+  * [Commands](interview/dbms/commands.md)
+  * [Practice](interview/dbms/practice.md)
+  * [Cheat Sheet](interview/dbms/cheatsheet.md)
+
+---
+
+* **Other Topics**
   * **Java**
     * [Notes](interview/java/notes.md)
     * [Questions](interview/java/questions.md)
@@ -16,11 +24,6 @@
     * [Questions](interview/springboot/questions.md)
     * [Q&A](interview/springboot/q&a.md)
     * [Cheat Sheet](interview/springboot/cheatsheet.md)
-  * **DBMS**
-    * [Q&A](interview/dbms/q&a.md)
-    * [Commands](interview/dbms/commands.md)
-    * [Practice](interview/dbms/practice.md)
-    * [Cheat Sheet](interview/dbms/cheatsheet.md)
 
 ---
 

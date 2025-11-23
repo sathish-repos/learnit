@@ -1,16 +1,19 @@
 <!-- _sidebar.md -->
 
-* [Home](/)
+* [← Back to Home](/)
 
 ---
 
-* **Interview Topics**
-  * **Java**
-    * [Notes](interview/java/notes.md)
-    * [Questions](interview/java/questions.md)
-    * [Q&A](interview/java/q&a.md)
-    * [Programs](interview/java/programs.md)
-    * [Cheat Sheet](interview/java/cheatsheet.md)
+* **Java**
+  * [Notes](interview/java/notes.md)
+  * [Questions](interview/java/questions.md)
+  * [Q&A](interview/java/q&a.md)
+  * [Programs](interview/java/programs.md)
+  * [Cheat Sheet](interview/java/cheatsheet.md)
+
+---
+
+* **Other Topics**
   * **Spring Boot**
     * [Notes](interview/springboot/notes.md)
     * [Questions](interview/springboot/questions.md)
